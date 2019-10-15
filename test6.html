@@ -1,0 +1,104 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas Gif</title>
+</head>
+
+<body>
+    <script src="https://unpkg.com/gifler@0.1.0/gifler.min.js"></script>
+    <script src="gif.js"></script>
+    <script src="GIFEncoder.js"></script>
+    <canvas id='test2'></canvas>
+    <button id='btn' onclick="onClick()">按我按我</button>
+</body>
+
+<script>
+    var canvas = document.getElementById('test2');
+    var context = canvas.getContext('2d');
+    // use external library to parse and draw gif animation
+    var img = new Image();
+    img.src = 'images/h03.png';
+    var img2 = new Image();
+    img2.src = 'images/h02.png';
+    var gif = new GIF({
+        workers: 1,
+        quality: 10
+    });
+    var time = 0
+    // var img2 = new Image();
+    // img2.src = 'images/h03.png';
+    var i = 0
+    function onDrawFrame(ctx, frame) {
+        console.log(frame.src)
+        // update canvas size
+        canvas.width = frame.width;
+        canvas.height = frame.height;
+        ctx.drawImage(frame.buffer, 0, 0);
+        ctx.font = "30px serif";
+        ctx.textBaseline = "hanging";
+        ctx.fillStyle = "rgb(12,69,42)";
+        ctx.drawImage(img, frame.width / 5 + 80, 0)
+        ctx.drawImage(img, frame.width / 5 + 120, 0)
+        ctx.drawImage(img, frame.width / 5 + 160, 0)
+        ctx.drawImage(img, frame.width / 5 + 200, 0)
+        ctx.fillText("顏", frame.width / 5 + 97, 12);
+        ctx.fillStyle = "rgb(68,11,187)";
+        ctx.fillText("家", frame.width / 5 + 135, 12);
+        ctx.fillStyle = "rgb(122,69,2)";
+        ctx.fillText("肉", frame.width / 5 + 175, 12);
+        ctx.fillStyle = "rgb(122,169,42)";
+        ctx.fillText("粽", frame.width / 5 + 215, 12);
+        if (i < 110) {
+            // // // 或者是canvas元素
+            // gif.addFrame(canvas, { delay: 100 });
+            gif.addFrame(ctx, { copy: true });
+
+            // // // 或者从canvas的上下文复制像素信息
+
+        }
+        i++;
+    }
+    gifler('images/h01.gif').frames(canvas, onDrawFrame);
+    // gifler('https://i.gifer.com/8RDg.gif').animate('#test1');
+
+    // btn.onClick = () => {
+    // console.log("123")
+    // }
+    function onClick() {
+        console.log("123")
+
+        // gif.addFrame(canvas, { delay: 100 });
+        // // // 或者从canvas的上下文复制像素信息
+        // gif.addFrame(context, { copy: true });
+
+        gif.on('finished', function (blob) {
+            // 这里的blob就是gif图片blod格式信息
+            window.open(URL.createObjectURL(blob));
+        });
+
+        gif.render();
+    }
+
+
+    function onClick2() {
+        //這邊是用圖片的方式
+        gif.addFrame(img);
+        gif.addFrame(img2);
+
+        // gif.addFrame(canvas, { delay: 100 });
+
+        gif.addFrame(context, { copy: true });
+        // // 或者从canvas的上下文复制像素信息
+        // gif.addFrame(context, { copy: true });
+
+        gif.on('finished', function (blob) {
+            // 这里的blob就是gif图片blod格式信息
+            window.open(URL.createObjectURL(blob));
+        });
+
+        gif.render();
+    }
+</script>
+
+</html>

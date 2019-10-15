@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://unpkg.com/konva@4.0.13/konva.min.js"></script>
+    <script src="https://unpkg.com/gifler@0.1.0/gifler.min.js"></script>
+    <script src="gif.js"></script>
+    <script src="GIFEncoder.js"></script>
+    <meta charset="utf-8" />
+    <title>Konva GIF Demo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+
+<body>
+        <button id='btn' onclick="onClick()">按我按我</button>
+    <div id="container"></div>
+
+
+    <script>
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+
+        var stage = new Konva.Stage({
+            container: 'container',
+            width: width,
+            height: height
+        });
+        var i = 0;
+        var layer = new Konva.Layer();
+        stage.add(layer);
+        var gif = new GIF();
+        var canvas = document.createElement('canvas');
+        // use external library to parse and draw gif animation
+        function onDrawFrame(ctx, frame) {
+            // update canvas size
+            canvas.width = frame.width;
+            canvas.height = frame.height;
+            // update canvas that we are using for Konva.Image
+            ctx.drawImage(frame.buffer, 0, 0);
+            ctx.font = '48px serif';
+            ctx.textBaseline = "hanging";
+
+            ctx.fillText('Hello world', 10, 50);
+            ctx.fillStyle = "rgb(200,20,20)";
+            // redraw the layer
+            layer.draw();
+            if (i <= 112) {
+                // gif.addFrame(ctx,{copy:true});
+                        gif.addFrame(canvas, { delay: 100 });
+            }
+            i++;
+        }
+
+        gifler('images/h12.gif').frames(canvas, onDrawFrame);
+
+        // draw resulted canvas into the stage as Konva.Image
+        var image = new Konva.Image({
+            image: canvas
+        });
+        layer.add(image);
+        function onClick() {
+        console.log("123")
+
+        // gif.addFrame(canvas, { delay: 100 });
+        // // // 或者从canvas的上下文复制像素信息
+        // gif.addFrame(context, { copy: true });
+
+        gif.on('finished', function (blob) {
+            // 这里的blob就是gif图片blod格式信息
+            window.open(URL.createObjectURL(blob));
+        });
+
+        gif.render();
+    }
+    </script>
+</body>
+
+</html>

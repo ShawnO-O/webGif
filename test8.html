@@ -1,0 +1,129 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas Gif</title>
+</head>
+
+<body>
+    <script src="https://unpkg.com/gifler@0.1.0/gifler.min.js"></script>
+    <script src="gif.js"></script>
+    <script src="GIFEncoder.js"></script>
+    <canvas id='test2'></canvas>
+    <button id='btn'>我是按鈕</button>
+</body>
+
+<script>
+    var fruits = ['images/a.jpg', 'images/aaa.png'];
+    var canvas = document.getElementById('test2');
+    canvas.width = 300;
+    canvas.height = 400;
+    var ctx2 = canvas.getContext('2d');
+    // use external library to parse and draw gif animation
+    var img = new Image();
+    img.src = 'images/h03.png';
+    var btn = document.getElementById('btn');
+    var gif = new GIF({
+        workers: 1,
+        quality: 10,
+        width: 300,
+        height: 400
+    });
+    // var img2 = new Image();
+    // img2.src = 'images/h03.png';
+    var count = 0;
+    function onDrawFrame(ctx, frame) {
+        console.log(frame.buffer)
+        // update canvas size
+        canvas.width = frame.width;
+        canvas.height = frame.height;
+
+        ctx.drawImage(frame.buffer, 0, 0);
+        ctx.font = "30px serif";
+        ctx.textBaseline = "hanging";
+        ctx.fillStyle = "rgb(12,69,42)";
+        ctx.drawImage(img, frame.width / 5 + 80, 0)
+        ctx.drawImage(img, frame.width / 5 + 120, 0)
+        ctx.drawImage(img, frame.width / 5 + 160, 0)
+        ctx.drawImage(img, frame.width / 5 + 200, 0)
+        ctx.fillText("顏", frame.width / 5 + 97, 12);
+        ctx.fillStyle = "rgb(68,11,187)";
+        ctx.fillText("家", frame.width / 5 + 135, 12);
+        ctx.fillStyle = "rgb(122,69,2)";
+        ctx.fillText("肉", frame.width / 5 + 175, 12);
+        ctx.fillStyle = "rgb(122,169,42)";
+        ctx.fillText("粽", frame.width / 5 + 215, 12);
+
+        // if (count <= 112) {
+        //     console.log("53:"+count)
+        //     gif.addFrame(canvas, { delay: 10 });
+
+        // }
+        count++;
+        // 或者从canvas的上下文复制像素信息
+
+    }
+    // gifler('images/h12.gif').frames(canvas, onDrawFrame);
+
+    btn.onclick = () => {
+
+
+        fruits.forEach(element => {
+            var image = new Image();
+            console.log(element)
+            image.src = element;
+            ctx2.drawImage(image, 0, 0);
+            ctx2.fillText("123",150, 200);
+            // 作为帧插入GIF
+            // gif.addFrame(ctx2, {
+            //     delay: 500,
+            //     copy: true
+            // });
+        });
+        // gif.addFrame(ctx2, { copy: true });
+        // 或者是canvas元素
+
+        // console.log("gif size"+gif.)
+        // gif.on('finished', function (blob) {
+        //     // 这里的blob就是gif图片blod格式信息
+        //     window.open(URL.createObjectURL(blob));
+        // });
+
+        // gif.render();
+        // encoder.finish();
+        // var binary_gif = encoder.stream().getData() //notice this is different from the as3gif package!
+        // var data_url = 'data:image/gif;base64,' + encode64(binary_gif);
+
+        // console.log("click yes")
+        // var gif = new GIF({
+        //     repeat: 0,
+        //     workers: 2,
+        //     quality: 10
+        // });
+        // // 添加一个图片标签对象像素到当前帧
+        // // gif.addFrame(imageElement);
+        // //或添加一个canvas对象的像素到当前帧
+        // gif.addFrame(document.getElementById('test2'), {
+        //     delay: 200
+        // });
+        // // gif.addFrame(document.getElementById('test2')[0], {
+        // //     delay: 200
+        // // });
+        // // gif.addFrame(document.getElementById('test2')[0], {
+        // //     delay: 200
+        // // });
+        // //从canvas context复制像素到当前帧
+        // gif.addFrame(ctx, {
+        //     copy: true
+        // });
+        // //合成图片成功后
+        // gif.on('finished', function (blob) {
+        //     window.open(URL.createObjectURL(blob));
+        // });
+        // //渲染图片
+        // gif.render();
+    }
+// gifler('https://i.gifer.com/8RDg.gif').animate('#test1');
+</script>
+
+</html>

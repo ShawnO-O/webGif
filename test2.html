@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas Gif</title>
+</head>
+
+<body onload="drawCanvas()">
+    <canvas id="canvas1" class="canvas" width="350" height="350"></canvas>
+</body>
+<script src="gifler.min.js"></script>
+<script>
+
+
+    var canvas = document.getElementById('canvas1');
+    var ctx = canvas.getContext('2d');
+    function drawCanvas() {
+        gifler('images/a01.gif').animate('.canvas')
+        ctx.font = '48px serif';
+        ctx.fillText('Hello world', 10, 50);
+        // ctx.fillText('Hello world', 30, 50);
+        // ctx.fillText('Hello world', 50, 50);
+        // ctx.fillText('Hello world', 70, 50);
+        // ctx.fillText('Hello world', 90, 50);
+    }
+
+</script>
+
+</html>
