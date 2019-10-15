@@ -100,7 +100,10 @@
     }
 
     btn.onclick = () => {
-        gifFactory();
+        //必須等到gif跑完才可以按
+        if (count >= 111) {
+            gifFactory();
+        }
     }
 </script>
 
