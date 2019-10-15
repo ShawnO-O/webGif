@@ -63,7 +63,7 @@
             //用時間差來取得gif本來的延遲
             gif.addFrame(canvas, { delay: dTime });
             // array.push(canvas)
-            if(count == 111){
+            if (count == 111) {
                 ok();
             }
         }
@@ -75,9 +75,9 @@
 
     var mBlob = null;
 
-function ok(){
-    gif.addFrame(ctx2, { copy: true });
-}
+    function ok() {
+        gif.addFrame(ctx2, { copy: true });
+    }
 
     //新的gif生成
     function gifFactory() {
