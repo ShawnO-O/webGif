@@ -33,9 +33,9 @@
     <div>
         <form>
             請選擇文字樣式<br><br>
-            <input id="mode1" type="radio" name="Fruit" value="1" checked="true"> 內文
-            <input id="mode2" type="radio" name="Fruit" value="2"> 外框
-            <input id="mode3" type="radio" name="Fruit" value="3">內文+外框
+            <input style="WIDTH: 30px; HEIGHT: 30px" id="mode1" type="radio" name="Fruit" value="1" checked="true"> 內文
+            <input style="WIDTH: 30px; HEIGHT: 30px" id="mode2" type="radio" name="Fruit" value="2"> 外框
+            <input style="WIDTH: 30px; HEIGHT: 30px" id="mode3" type="radio" name="Fruit" value="3">內文+外框
         </form>
     </div>
     <div>
@@ -83,16 +83,17 @@
     <br>
     <div>
         請選擇特效<br><br>
-        <input id="seMode1" type="checkbox" name="vehicle1" value="Bike">跑馬燈</t>
-        <input id="seMode2" type="checkbox" name="vehicle2" value="Car"> 文字放大縮小
-        <input id="seMode3" type="checkbox" name="vehicle3" value="Boat"> 內文閃爍<br><br>
-        <input id="seMode4" type="checkbox" name="vehicle3" value="Boat"> 邊框閃爍
-        <input id="seMode5" type="checkbox" name="vehicle3" value="Boat"> 內文+邊框閃爍
-        <input id="seMode6" type="checkbox" name="vehicle3" value="Boat"> 文字上下跳<br><br>
+        <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode1" type="checkbox" name="vehicle1" value="Bike">跑馬燈</t>
+        <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode2" type="checkbox" name="vehicle2" value="Car"> 文字放大縮小
+        <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode3" type="checkbox" name="vehicle3" value="Boat"> 內文閃爍<br><br>
+        <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode4" type="checkbox" name="vehicle3" value="Boat"> 邊框閃爍
+        <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode5" type="checkbox" name="vehicle3" value="Boat"> 內文+邊框閃爍
+        <input style="WIDTH: 30px; HEIGHT: 2030pxpx" id="seMode6" type="checkbox" name="vehicle3" value="Boat">
+        文字上下跳<br><br>
     </div>
     <div>
-        <button id='btn'>我是按鈕</button>
-
+        <button id='btn'>生成gif</button>
+        <button id='reload'>重設</button>
     </div>
 
 </body>
@@ -322,6 +323,7 @@
                 // 这里的blob就是gif图片blod格式信息
                 mBlob = blob;
                 openURL();
+                window.location.reload();
             });
             gif.render();
         } else {
@@ -342,6 +344,9 @@
         // // if (count >= 111) {
         gifFactory();
         // // }
+    }
+    reload.onclick=()=>{
+        window.location.reload();
     }
 </script>
 
