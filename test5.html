@@ -9,12 +9,109 @@
     <script src="https://unpkg.com/gifler@0.1.0/gifler.min.js"></script>
     <script src="gif.js"></script>
     <script src="GIFEncoder.js"></script>
-    <canvas id='test2'></canvas>
-    <button id='btn'>我是按鈕</button>
+    <div>
+        <canvas id='test2'></canvas>
+    </div>
+    <div>
+        <br>
+        請輸入車行名稱
+        <span> <input id='name' /></span>
+    </div>
+    <div>
+        <span>
+            <form>
+                <br>字體大小
+                <select id="fontSize" name="YourLocation">
+                    　<option value="50">50</option>
+                    　<option value="70">70</option>
+                    　<option value="90">90</option>
+                    　<option value="110">110</option>
+                </select>
+            </form>
+        </span>
+    </div>
+    <div>
+        <form>
+            請選擇文字樣式<br><br>
+            <input id="mode1" type="radio" name="Fruit" value="1" checked="true"> 內文
+            <input id="mode2" type="radio" name="Fruit" value="2"> 外框
+            <input id="mode3" type="radio" name="Fruit" value="3">內文+外框
+        </form>
+    </div>
+    <div>
+        <br>
+        請選擇文字顏色
+        <select id="colorContent" name="colorContent" size="1">
+            <option value="White" style="background:white;">White</option>
+            <option value="Black" style="background:black;" SELECTED>Black</option>
+            <option value="Red" style="background:red;">Red</option>
+            <option value="Yellow" style="background:yellow;">Yellow</option>
+            <option value="Pink" style="background:pink;">Pink</option>
+            <option value="Green" style="color:green;">Green</option>
+            <option value="Orange" style="background:orange;">Orange</option>
+            <option value="Purple" style="background:purple;">Purple</option>
+            <option value="Blue" style="background:blue;">Blue</option>
+            <option value="Beige" style="background:beige;">Beige</option>
+            <option value="Brown" style="background:brown;">Brown</option>
+            <option value="Teal" style="background:teal;">Teal</option>
+            <option value="Navy" style="background:navy;">Navy</option>
+            <option value="Maroon" style="background:maroon;">Maroon</option>
+            <option value="LimeGreen" style="background:limegreen;">LimeGreen</option>
+        </select>
+    </div>
+    <br>
+    <div>
+        請選擇外框顏色
+        <select id="colorFrame" name="colorFrame" size="1">
+            <option value="White" style="background:white;" SELECTED>White</option>
+            <option value="Black" style="background:black;">Black</option>
+            <option value="Red" style="background:red;">Red</option>
+            <option value="Yellow" style="background:yellow;">Yellow</option>
+            <option value="Pink" style="background:pink;">Pink</option>
+            <option value="Green" style="color:green;">Green</option>
+            <option value="Orange" style="background:orange;">Orange</option>
+            <option value="Purple" style="background:purple;">Purple</option>
+            <option value="Blue" style="background:blue;">Blue</option>
+            <option value="Beige" style="background:beige;">Beige</option>
+            <option value="Brown" style="background:brown;">Brown</option>
+            <option value="Teal" style="background:teal;">Teal</option>
+            <option value="Navy" style="background:navy;">Navy</option>
+            <option value="Maroon" style="background:maroon;">Maroon</option>
+            <option value="LimeGreen" style="background:limegreen;">LimeGreen</option>
+        </select>
+    </div>
+    <br>
+    <div>
+        請選擇特效<br><br>
+        <input id="seMode1" type="checkbox" name="vehicle1" value="Bike">跑馬燈</t>
+        <input id="seMode2" type="checkbox" name="vehicle2" value="Car"> 文字放大縮小
+        <input id="seMode3" type="checkbox" name="vehicle3" value="Boat"> 內文閃爍<br><br>
+        <input id="seMode4" type="checkbox" name="vehicle3" value="Boat"> 邊框閃爍
+        <input id="seMode5" type="checkbox" name="vehicle3" value="Boat"> 內文+邊框閃爍
+        <input id="seMode6" type="checkbox" name="vehicle3" value="Boat"> 文字上下跳<br><br>
+    </div>
+    <div>
+        <button id='btn'>我是按鈕</button>
+
+    </div>
+
 </body>
 
 <script>
+    var input = document.getElementById('name');
     var canvas = document.getElementById('test2');
+    var fontSize = document.getElementById('fontSize');
+    var colorContent = document.getElementById('colorContent');
+    var colorFrame = document.getElementById('colorFrame');
+    var mode1 = document.getElementById('mode1');
+    var mode2 = document.getElementById('mode2');
+    var mode3 = document.getElementById('mode3');
+    var seMode1 = document.getElementById('seMode1');
+    var seMode2 = document.getElementById('seMode2');
+    var seMode3 = document.getElementById('seMode3');
+    var seMode4 = document.getElementById('seMode4');
+    var seMode5 = document.getElementById('seMode5');
+    var seMode6 = document.getElementById('seMode6');
     canvas.width = 300;
     canvas.height = 400;
     var ctx2 = canvas.getContext('2d');
@@ -23,7 +120,7 @@
     img.src = 'images/h03.png';
     var btn = document.getElementById('btn');
     var gif = new GIF({
-        workers: 3,
+        workers: 1,
         quality: 10
     });
     // var img2 = new Image();
@@ -31,37 +128,79 @@
     var count = 0;
     var time = 0;
     var dTime = 100;
+    var array = [];
+    var arrayD = [];
 
     function onDrawFrame(ctx, frame) {
         if (count > 0) {
             dTime = (Date.now() - time)
         }
-        console.log(count + ":" + dTime);
+
         time = Date.now();
         // update canvas size
         canvas.width = frame.width;
         canvas.height = frame.height;
 
         ctx.drawImage(frame.buffer, 0, 0);
-        ctx.font = "30px serif";
-        ctx.textBaseline = "hanging";
-        ctx.fillStyle = "rgb(12,69,42)";
-        ctx.drawImage(img, frame.width / 5 + 80, 0)
-        ctx.drawImage(img, frame.width / 5 + 120, 0)
-        ctx.drawImage(img, frame.width / 5 + 160, 0)
-        ctx.drawImage(img, frame.width / 5 + 200, 0)
-        ctx.fillText("顏", frame.width / 5 + 97, 12);
-        ctx.fillStyle = "rgb(68,11,187)";
-        ctx.fillText("家", frame.width / 5 + 135, 12);
-        ctx.fillStyle = "rgb(122,69,2)";
-        ctx.fillText("肉", frame.width / 5 + 175, 12);
-        ctx.fillStyle = "rgb(122,169,42)";
-        ctx.fillText("粽", frame.width / 5 + 215, 12);
+        //字型大小
+        ctx.font = "bold " + fontSize.value + "px serif";
+
+
+        var ss = input.value.split('');
+        if (ss.length > 0) {
+            var pos = 0;
+            ss.forEach(element => {
+                var FontX = frame.width / 5 + 27 + (pos * 60);
+                var FontY = frame.height - 80;
+
+
+
+
+                if (seMode2.checked) {
+                    FontResize(ctx, count, pos)
+                }
+
+                if (mode1.checked || mode3.checked) {
+                    if (seMode1.checked)
+                        HorseRunning(ctx, pos, count)
+                    else if (seMode3.checked)
+                        ContentFlicker(ctx, count)
+                    else if (seMode5.checked) {
+                        ALLFlickerFill(ctx, count)
+                    } else
+                        ctx.fillStyle = colorContent.value;
+
+                    if (seMode6.checked)
+                        FontJump(ctx, element, FontX, FontY, pos, count)
+                    else
+                        ctx.fillText(element, FontX, FontY);
+                }
+
+                if (mode2.checked || mode3.checked) {
+
+                    ctx.lineWidth = "1.5";
+                    if (seMode4.checked)
+                        FrameFlicker(ctx, count)
+                    else if (seMode5.checked) {
+                        ALLFlicker(ctx, count)
+                    }
+                    else
+                        ctx.strokeStyle = colorFrame.value;
+
+                    if (seMode6.checked)
+                        FontJumpStroke(ctx, element, FontX, FontY, pos, count)
+                    else
+                        ctx.strokeText(element, frame.width / 5 + 27 + (pos * 60), frame.height - 80);
+                }
+
+                pos++;
+            });
+
+        }
 
         if (count <= 111) {
-            console.log("53:" + count)
             //用時間差來取得gif本來的延遲
-            gif.addFrame(canvas, { delay: dTime });
+            gif.addFrame(canvas, { delay: 300 });
             // array.push(canvas)
             if (count == 111) {
                 ok();
@@ -71,11 +210,107 @@
         // 或者从canvas的上下文复制像素信息
 
     }
-    gifler('images/h12.gif').frames(canvas, onDrawFrame);
+
+    //文字上下動 stroke
+    function FontJumpStroke(ctx, element, FontX, FontY, pos, count) {
+        console.log(FontX, pos, count % 5);
+        var mX = 0;
+        if (count % 5 == pos) {
+            mX = FontY - 100
+        } else {
+            mX = FontY
+        }
+        ctx.strokeText(element, FontX, mX);
+    }
+
+    //文字上下動 fill
+    function FontJump(ctx, element, FontX, FontY, pos, count) {
+        console.log(FontX, pos, count % 5);
+        var mX = 0;
+        if (count % 5 == pos) {
+            mX = FontY - 100
+        } else {
+            mX = FontY
+        }
+        ctx.fillText(element, FontX, mX);
+    }
+
+    //內文 + 邊框 閃爍
+    function ALLFlickerFill(ctx, count) {
+        if (count % 2 == 0) {
+            ctx.fillStyle = "yellow";
+
+        } else {
+            ctx.fillStyle = "black";
+
+        }
+    }
+    //內文 + 邊框 閃爍
+    function ALLFlicker(ctx, count) {
+        if (count % 2 == 0) {
+            ctx.strokeStyle = "yellow";
+        } else {
+            ctx.strokeStyle = "black";
+        }
+    }
+
+    //內文閃爍
+    function ContentFlicker(ctx, count) {
+        if (count % 2 == 0) {
+            ctx.fillStyle = "yellow";
+        } else {
+            ctx.fillStyle = "black";
+        }
+    }
+
+    //邊框閃爍
+    function FrameFlicker(ctx, count) {
+        if (count % 2 == 0) {
+            ctx.strokeStyle = "red";
+        } else {
+            ctx.strokeStyle = "white";
+        }
+    }
+
+    //閃爍
+    function Flicker(ctx, count) {
+        if (count % 2 == 0) {
+            ctx.fillStyle = "rgb(122,169,42)";
+        } else {
+            ctx.fillStyle = "rgb(255,255,255)";
+        }
+    }
+
+    //文字放大縮小
+    function FontResize(ctx, count, pos) {
+        if (count % 5 == pos) {
+            ctx.font = "bold 100px serif";
+        } else {
+            ctx.font = "bold 60px serif";
+        }
+
+    }
+
+    //人生跑馬燈
+    function HorseRunning(ctx, pos, count) {
+        if (count % 5 == pos) {
+            ctx.fillStyle = "orange";
+        } else {
+            ctx.fillStyle = "black";
+        }
+
+    }
+
+
 
     var mBlob = null;
 
     function ok() {
+        // var i = 0;
+        // array.forEach(element => {
+        //     gif.addFrame(element,{delay:70});
+        //     i++;
+        // });
         gif.addFrame(ctx2, { copy: true });
     }
 
@@ -98,12 +333,15 @@
     function openURL() {
         window.open(URL.createObjectURL(mBlob));
     }
-
+    gifler('images/b01.gif').frames(canvas, onDrawFrame);
     btn.onclick = () => {
-        //必須等到gif跑完才可以按
-        if (count >= 111) {
-            gifFactory();
-        }
+        // console.log("clickTimes:" + clickTimes)
+
+        // console.log(array.length);
+        // //必須等到gif跑完才可以按
+        // // if (count >= 111) {
+        gifFactory();
+        // // }
     }
 </script>
 
