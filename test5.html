@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Canvas Gif</title>
 </head>
+<link rel="stylesheet" href="styles.css">
 
 <body>
     <script src="https://unpkg.com/gifler@0.1.0/gifler.min.js"></script>
@@ -15,7 +16,7 @@
     <div>
         <br>
         請輸入車行名稱
-        <span> <input id='name' /></span>
+        <span> <input id='name' value="最多七個字的拉" maxlength="7" /></span>
     </div>
     <div>
         <span>
@@ -23,15 +24,16 @@
                 <br>字體大小
                 <select id="fontSize" name="YourLocation">
                     　<option value="50">50</option>
+                    　<option value="60">60</option>
                     　<option value="70">70</option>
+                    　<option value="80">80</option>
                     　<option value="90">90</option>
-                    　<option value="110">110</option>
                 </select>
             </form>
         </span>
     </div>
     <div>
-        <form>
+        <form hidden="true">
             請選擇文字樣式<br><br>
             <input style="WIDTH: 30px; HEIGHT: 30px" id="mode1" type="radio" name="Fruit" value="1" checked="true"> 內文
             <input style="WIDTH: 30px; HEIGHT: 30px" id="mode2" type="radio" name="Fruit" value="2"> 外框
@@ -43,12 +45,12 @@
         請選擇文字顏色
         <select id="colorContent" name="colorContent" size="1">
             <option value="White" style="background:white;">White</option>
-            <option value="Black" style="background:black;" SELECTED>Black</option>
+            <option value="Black" style="background:black;">Black</option>
             <option value="Red" style="background:red;">Red</option>
             <option value="Yellow" style="background:yellow;">Yellow</option>
             <option value="Pink" style="background:pink;">Pink</option>
             <option value="Green" style="color:green;">Green</option>
-            <option value="Orange" style="background:orange;">Orange</option>
+            <option value="Orange" style="background:orange;" SELECTED>Orange</option>
             <option value="Purple" style="background:purple;">Purple</option>
             <option value="Blue" style="background:blue;">Blue</option>
             <option value="Beige" style="background:beige;">Beige</option>
@@ -59,16 +61,17 @@
             <option value="LimeGreen" style="background:limegreen;">LimeGreen</option>
         </select>
     </div>
+
     <br>
     <div>
         請選擇外框顏色
         <select id="colorFrame" name="colorFrame" size="1">
-            <option value="White" style="background:white;" SELECTED>White</option>
+            <option value="White" style="background:white;">White</option>
             <option value="Black" style="background:black;">Black</option>
             <option value="Red" style="background:red;">Red</option>
             <option value="Yellow" style="background:yellow;">Yellow</option>
             <option value="Pink" style="background:pink;">Pink</option>
-            <option value="Green" style="color:green;">Green</option>
+            <option value="Green" style="color:green;" SELECTED>Green</option>
             <option value="Orange" style="background:orange;">Orange</option>
             <option value="Purple" style="background:purple;">Purple</option>
             <option value="Blue" style="background:blue;">Blue</option>
@@ -83,12 +86,13 @@
     <br>
     <div>
         請選擇特效<br><br>
-        <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode1" type="checkbox" name="vehicle1" value="Bike">跑馬燈</t>
+        <input class="" style="WIDTH: 30px; HEIGHT: 30px" id="seMode1" type="checkbox" name="vehicle1" value="Bike">跑馬燈
         <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode2" type="checkbox" name="vehicle2" value="Car"> 文字放大縮小
-        <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode3" type="checkbox" name="vehicle3" value="Boat"> 內文閃爍<br><br>
+        <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode3" type="checkbox" name="vehicle3" value="Boat"
+            hidden="true"> <br><br>
         <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode4" type="checkbox" name="vehicle3" value="Boat"> 邊框閃爍
         <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode5" type="checkbox" name="vehicle3" value="Boat"> 內文+邊框閃爍
-        <input style="WIDTH: 30px; HEIGHT: 2030pxpx" id="seMode6" type="checkbox" name="vehicle3" value="Boat">
+        <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode6" type="checkbox" name="vehicle3" value="Boat">
         文字上下跳<br><br>
     </div>
     <div>
@@ -131,7 +135,7 @@
     var dTime = 100;
     var array = [];
     var arrayD = [];
-
+    var fontArraySize = 0;
     function onDrawFrame(ctx, frame) {
         if (count > 0) {
             dTime = (Date.now() - time)
@@ -148,11 +152,15 @@
 
 
         var ss = input.value.split('');
-        if (ss.length > 0) {
+        fontArraySize = ss.length;
+        if (fontArraySize > 0) {
             var pos = 0;
             ss.forEach(element => {
-                var FontX = frame.width / 5 + 27 + (pos * 60);
-                var FontY = frame.height - 80;
+                //因為看起來文字部分占了2/4
+                var widthBase = frame.width / 4;
+                var FontX = widthBase*2 / fontArraySize *pos+(fontSize.value*0.8) + widthBase;
+                console.log(pos+":"+FontX);
+                var FontY = frame.height - 50;
 
 
 
@@ -161,38 +169,38 @@
                     FontResize(ctx, count, pos)
                 }
 
-                if (mode1.checked || mode3.checked) {
-                    if (seMode1.checked)
-                        HorseRunning(ctx, pos, count)
-                    else if (seMode3.checked)
-                        ContentFlicker(ctx, count)
-                    else if (seMode5.checked) {
-                        ALLFlickerFill(ctx, count)
-                    } else
-                        ctx.fillStyle = colorContent.value;
+                // if (mode1.checked || mode3.checked) {
+                if (seMode1.checked)
+                    HorseRunning(ctx, pos, count)
+                else if (seMode3.checked)
+                    ContentFlicker(ctx, count)
+                else if (seMode5.checked) {
+                    ALLFlickerFill(ctx, count)
+                } else
+                    ctx.fillStyle = colorContent.value;
 
-                    if (seMode6.checked)
-                        FontJump(ctx, element, FontX, FontY, pos, count)
-                    else
-                        ctx.fillText(element, FontX, FontY);
+                if (seMode6.checked)
+                    FontJump(ctx, element, FontX, FontY, pos, count)
+                else
+                    ctx.fillText(element, FontX, FontY);
+                // }
+
+                // if (mode2.checked || mode3.checked) {
+
+                ctx.lineWidth = "1.5";
+                if (seMode4.checked)
+                    FrameFlicker(ctx, count)
+                else if (seMode5.checked) {
+                    ALLFlicker(ctx, count)
                 }
+                else
+                    ctx.strokeStyle = colorFrame.value;
 
-                if (mode2.checked || mode3.checked) {
-
-                    ctx.lineWidth = "1.5";
-                    if (seMode4.checked)
-                        FrameFlicker(ctx, count)
-                    else if (seMode5.checked) {
-                        ALLFlicker(ctx, count)
-                    }
-                    else
-                        ctx.strokeStyle = colorFrame.value;
-
-                    if (seMode6.checked)
-                        FontJumpStroke(ctx, element, FontX, FontY, pos, count)
-                    else
-                        ctx.strokeText(element, frame.width / 5 + 27 + (pos * 60), frame.height - 80);
-                }
+                if (seMode6.checked)
+                    FontJumpStroke(ctx, element, FontX, FontY, pos, count)
+                else
+                    ctx.strokeText(element, FontX, frame.height - 50);
+                // }
 
                 pos++;
             });
@@ -292,13 +300,14 @@
 
     }
 
+    var horseColor = ['red', 'orange', 'yellow', 'green', 'blue', '#4b0080', 'purple']
     //人生跑馬燈
     function HorseRunning(ctx, pos, count) {
-        if (count % 5 == pos) {
-            ctx.fillStyle = "orange";
-        } else {
-            ctx.fillStyle = "black";
-        }
+        // if (count % fontArraySize == 0) {
+        ctx.fillStyle = horseColor[count % fontArraySize];
+        // } else {
+        // ctx.fillStyle = "black";
+        // }
 
     }
 
@@ -345,7 +354,7 @@
         gifFactory();
         // // }
     }
-    reload.onclick=()=>{
+    reload.onclick = () => {
         window.location.reload();
     }
 </script>
