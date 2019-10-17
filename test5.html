@@ -396,7 +396,7 @@
         //下载动作
         var el = document.createElement('a');
         el.href = URL.createObjectURL(mBlob);
-        el.download = 'demo-name'; //设置下载文件名称
+        el.download = input.value; //设置下载文件名称
         document.body.appendChild(el);
         var evt = document.createEvent("MouseEvents");
         evt.initEvent("click", false, false);
@@ -410,7 +410,7 @@
         // console.log("clickTimes:" + clickTimes)
         loadingGif.hidden = false;
 
-        // gifFactory();
+        gifFactory();
   
     }
     reload.onclick = () => {
