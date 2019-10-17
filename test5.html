@@ -119,7 +119,12 @@
         <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode6" type="checkbox" name="vehicle3" value="Boat">
         文字上下跳<br><br>
     </div>
+    <div id="loadingGif" style="padding-top: 20px;padding-bottom: 20px;" hidden="true">
+            <img src="images/ZZ5H.gif" style="width: 100;height: 100;">
+            圖片產生中...請稍後
+    </div>
     <div>
+      
         <button id='btn'>生成gif</button>
         <button id='reload'>重設</button>
     </div>
@@ -141,6 +146,7 @@
     var seMode4 = document.getElementById('seMode4');
     var seMode5 = document.getElementById('seMode5');
     var seMode6 = document.getElementById('seMode6');
+    var loadingGif = document.getElementById('loadingGif');
     canvas.width = 300;
     canvas.height = 400;
     var ctx2 = canvas.getContext('2d');
@@ -402,13 +408,10 @@
     gifler('images/b01.gif').frames(canvas, onDrawFrame);
     btn.onclick = () => {
         // console.log("clickTimes:" + clickTimes)
+        loadingGif.hidden = false;
 
-        // console.log(array.length);
-        // //必須等到gif跑完才可以按
-        // // if (count >= 111) {
-        gifFactory();
-        // // }
-
+        // gifFactory();
+  
     }
     reload.onclick = () => {
         window.location.reload();
