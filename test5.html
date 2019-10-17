@@ -15,12 +15,12 @@
     </div>
     <div>
         <br>
-        請輸入車行名稱
-        <span> <input id='name' value="最多七個字的拉" maxlength="7" /></span>
+        請輸入車行名稱(最多7個字)
+        <span> <input id='name' value="最多七個的喔喔" maxlength="7" /></span>
     </div>
     <div>
         <span>
-            <form>
+            <form hidden="true">
                 <br>字體大小
                 <select id="fontSize" name="YourLocation">
                     　<option value="50">50</option>
@@ -46,19 +46,31 @@
         <select id="colorContent" name="colorContent" size="1">
             <option value="White" style="background:white;">White</option>
             <option value="Black" style="background:black;">Black</option>
-            <option value="Red" style="background:red;">Red</option>
             <option value="Yellow" style="background:yellow;">Yellow</option>
-            <option value="Pink" style="background:pink;">Pink</option>
-            <option value="Green" style="color:green;">Green</option>
-            <option value="Orange" style="background:orange;" SELECTED>Orange</option>
-            <option value="Purple" style="background:purple;">Purple</option>
-            <option value="Blue" style="background:blue;">Blue</option>
-            <option value="Beige" style="background:beige;">Beige</option>
+            <option value="Gold" style="background:Gold;">Gold </option>
+            <option value="Orange" style="background:orange;">Orange</option>
+            <option value="GoldenRod" style="background:GoldenRod;">GoldenRod </option>
+            <option value="Tomato" style="background:Tomato;">Tomato </option>
+            <option value="Red" style="background:red;">Red</option>
+            <option value="OrangeRed" style="background:OrangeRed;">OrangeRed </option>
             <option value="Brown" style="background:brown;">Brown</option>
-            <option value="Teal" style="background:teal;">Teal</option>
-            <option value="Navy" style="background:navy;">Navy</option>
             <option value="Maroon" style="background:maroon;">Maroon</option>
-            <option value="LimeGreen" style="background:limegreen;">LimeGreen</option>
+            <option value="LightSkyBlue" style="background:LightSkyBlue;">LightSkyBlue </option>
+            <option value="Cyan" style="background:Cyan;">Cyan</option>
+            <option value="SkyBlue" style="background:SkyBlue;">SkyBlue </option>
+            <option value="CornflowerBlue" style="background:CornflowerBlue;">CornflowerBlue </option>
+            <option value="Blue" style="background:blue;">Blue</option>
+            <option value="Navy" style="background:navy;">Navy</option>
+            <option value="SlateBlue" style="background:SlateBlue;">SlateBlue </option>
+            <option value="Magenta" style="background:Magenta;">Magenta </option>
+            <option value="BlueViolet" style="background:BlueViolet ;">BlueViolet </option>
+            <option value="Purple" style="background:purple;" SELECTED>Purple</option>
+            <option value="LightGreen" style="background:LightGreen;">LightGreen </option>
+            <option value="YellowGreen" style="background:YellowGreen;">YellowGreen </option>
+            <option value="Chartreuse" style="background:Chartreuse;">Chartreuse </option>
+            <option value="SpringGreen" style="background:SpringGreen;">SpringGreen </option>
+            <option value="LimeGreen" style="background:LimeGreen;">LimeGreen</option>
+            <option value="Green" style="color:green;">Green</option>
         </select>
     </div>
 
@@ -68,19 +80,31 @@
         <select id="colorFrame" name="colorFrame" size="1">
             <option value="White" style="background:white;">White</option>
             <option value="Black" style="background:black;">Black</option>
-            <option value="Red" style="background:red;">Red</option>
             <option value="Yellow" style="background:yellow;">Yellow</option>
-            <option value="Pink" style="background:pink;">Pink</option>
-            <option value="Green" style="color:green;" SELECTED>Green</option>
+            <option value="Gold" style="background:Gold;">Gold </option>
             <option value="Orange" style="background:orange;">Orange</option>
-            <option value="Purple" style="background:purple;">Purple</option>
-            <option value="Blue" style="background:blue;">Blue</option>
-            <option value="Beige" style="background:beige;">Beige</option>
+            <option value="GoldenRod" style="background:GoldenRod;">GoldenRod </option>
+            <option value="Tomato" style="background:Tomato;">Tomato </option>
+            <option value="Red" style="background:red;">Red</option>
+            <option value="OrangeRed" style="background:OrangeRed;">OrangeRed </option>
             <option value="Brown" style="background:brown;">Brown</option>
-            <option value="Teal" style="background:teal;">Teal</option>
-            <option value="Navy" style="background:navy;">Navy</option>
             <option value="Maroon" style="background:maroon;">Maroon</option>
-            <option value="LimeGreen" style="background:limegreen;">LimeGreen</option>
+            <option value="LightSkyBlue" style="background:LightSkyBlue;">LightSkyBlue </option>
+            <option value="Cyan" style="background:Cyan;" SELECTED>Cyan</option>
+            <option value="SkyBlue" style="background:SkyBlue;">SkyBlue </option>
+            <option value="CornflowerBlue" style="background:CornflowerBlue;">CornflowerBlue </option>
+            <option value="Blue" style="background:blue;">Blue</option>
+            <option value="Navy" style="background:navy;">Navy</option>
+            <option value="SlateBlue" style="background:SlateBlue;">SlateBlue </option>
+            <option value="Magenta" style="background:Magenta;">Magenta </option>
+            <option value="BlueViolet" style="background:BlueViolet ;">BlueViolet </option>
+            <option value="Purple" style="background:purple;">Purple</option>
+            <option value="LightGreen" style="background:LightGreen;">LightGreen </option>
+            <option value="YellowGreen" style="background:YellowGreen;">YellowGreen </option>
+            <option value="Chartreuse" style="background:Chartreuse;">Chartreuse </option>
+            <option value="SpringGreen" style="background:SpringGreen;">SpringGreen </option>
+            <option value="LimeGreen" style="background:LimeGreen;">LimeGreen</option>
+            <option value="Green" style="color:green;">Green</option>
         </select>
     </div>
     <br>
@@ -136,6 +160,7 @@
     var array = [];
     var arrayD = [];
     var fontArraySize = 0;
+    var intFontSize = 70;
     function onDrawFrame(ctx, frame) {
         if (count > 0) {
             dTime = (Date.now() - time)
@@ -147,8 +172,18 @@
         canvas.height = frame.height;
 
         ctx.drawImage(frame.buffer, 0, 0);
+        //強制轉換字體大小
+        if (input.value.length > 6) {
+            intFontSize = 45;
+        } else if (input.value.length > 5) {
+            intFontSize = 55;
+        } else if (input.value.length > 4) {
+            intFontSize = 60;
+        } else {
+            intFontSize = 70;
+        }
         //字型大小
-        ctx.font = "bold " + fontSize.value + "px serif";
+        ctx.font = "bold " + intFontSize + "px serif";
 
 
         var ss = input.value.split('');
@@ -158,9 +193,23 @@
             ss.forEach(element => {
                 //因為看起來文字部分占了2/4
                 var widthBase = frame.width / 4;
-                var FontX = widthBase * 2 / fontArraySize * pos + (fontSize.value * 0.8) + widthBase;
-                console.log(pos + ":" + FontX);
-                var FontY = frame.height - 50;
+
+                // var FontX = widthBase * 2 / fontArraySize * pos + (fontSize.value * 0.8) + widthBase;
+                var FontX = 0
+                if (ss.length > 6) {
+                    FontX = widthBase + (widthBase * 2 / ss.length * pos) - 40 + (pos * 3);
+                } else if (ss.length > 5) {
+                    FontX = widthBase + (widthBase * 2 / ss.length * pos) - 40 + (pos * 4);
+                } else if (ss.length > 4) {
+                    widthBase = widthBase - 10
+                    console.log(widthBase + "+" + widthBase + "*2/" + ss.length + "*" + pos);
+                    FontX = widthBase + (widthBase * 2 / ss.length * pos) - 20 + (pos * 7);
+                } else {
+                    FontX = widthBase + (widthBase * 2 / ss.length * pos) - 15
+                }
+
+
+                var FontY = frame.height - 40;
 
 
 
@@ -187,7 +236,7 @@
 
                 // if (mode2.checked || mode3.checked) {
 
-                ctx.lineWidth = "1.5";
+                ctx.lineWidth = "1";
                 if (seMode4.checked)
                     FrameFlicker(ctx, count)
                 else if (seMode5.checked) {
@@ -199,7 +248,7 @@
                 if (seMode6.checked)
                     FontJumpStroke(ctx, element, FontX, FontY, pos, count)
                 else
-                    ctx.strokeText(element, FontX, frame.height - 50);
+                    ctx.strokeText(element, FontX, FontY);
                 // }
 
                 pos++;
@@ -225,7 +274,7 @@
         console.log(FontX, pos, count % 5);
         var mX = 0;
         if (count % fontArraySize == pos) {
-            mX = FontY - 100
+            mX = FontY - 60
         } else {
             mX = FontY
         }
@@ -236,7 +285,7 @@
     function FontJump(ctx, element, FontX, FontY, pos, count) {
         var mX = 0;
         if (count % fontArraySize == pos) {
-            mX = FontY - 100
+            mX = FontY - 60
         } else {
             mX = FontY
         }
@@ -291,10 +340,10 @@
 
     //文字放大縮小
     function FontResize(ctx, count, pos) {
-        if (count % 5 == pos) {
-            ctx.font = "bold 100px serif";
+        if (count % fontArraySize == pos) {
+            ctx.font = "bold " + (intFontSize + 30) + "px serif";
         } else {
-            ctx.font = "bold 60px serif";
+            ctx.font = "bold " + intFontSize + "px serif";
         }
 
     }
