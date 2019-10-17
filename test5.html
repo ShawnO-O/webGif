@@ -158,8 +158,8 @@
             ss.forEach(element => {
                 //因為看起來文字部分占了2/4
                 var widthBase = frame.width / 4;
-                var FontX = widthBase*2 / fontArraySize *pos+(fontSize.value*0.8) + widthBase;
-                console.log(pos+":"+FontX);
+                var FontX = widthBase * 2 / fontArraySize * pos + (fontSize.value * 0.8) + widthBase;
+                console.log(pos + ":" + FontX);
                 var FontY = frame.height - 50;
 
 
@@ -224,7 +224,7 @@
     function FontJumpStroke(ctx, element, FontX, FontY, pos, count) {
         console.log(FontX, pos, count % 5);
         var mX = 0;
-        if (count % 5 == pos) {
+        if (count % fontArraySize == pos) {
             mX = FontY - 100
         } else {
             mX = FontY
@@ -234,9 +234,8 @@
 
     //文字上下動 fill
     function FontJump(ctx, element, FontX, FontY, pos, count) {
-        console.log(FontX, pos, count % 5);
         var mX = 0;
-        if (count % 5 == pos) {
+        if (count % fontArraySize == pos) {
             mX = FontY - 100
         } else {
             mX = FontY
@@ -303,12 +302,7 @@
     var horseColor = ['red', 'orange', 'yellow', 'green', 'blue', '#4b0080', 'purple']
     //人生跑馬燈
     function HorseRunning(ctx, pos, count) {
-        // if (count % fontArraySize == 0) {
-        ctx.fillStyle = horseColor[count % fontArraySize];
-        // } else {
-        // ctx.fillStyle = "black";
-        // }
-
+        ctx.fillStyle = horseColor[Math.abs((count % fontArraySize) - pos)];
     }
 
 
@@ -327,8 +321,10 @@
     //新的gif生成
     function gifFactory() {
         if (mBlob == null) {
+
             // gif.addFrame(ctx2, { copy: true });
             gif.on('finished', function (blob) {
+
                 // 这里的blob就是gif图片blod格式信息
                 mBlob = blob;
                 openURL();
@@ -342,7 +338,17 @@
 
     //共用
     function openURL() {
-        window.open(URL.createObjectURL(mBlob));
+        //下载动作
+        var el = document.createElement('a');
+        el.href = URL.createObjectURL(mBlob);
+        el.download = 'demo-name'; //设置下载文件名称
+        document.body.appendChild(el);
+        var evt = document.createEvent("MouseEvents");
+        evt.initEvent("click", false, false);
+        el.dispatchEvent(evt);
+        document.body.removeChild(el);
+
+        // window.open(URL.createObjectURL(mBlob));
     }
     gifler('images/b01.gif').frames(canvas, onDrawFrame);
     btn.onclick = () => {
@@ -353,6 +359,7 @@
         // // if (count >= 111) {
         gifFactory();
         // // }
+
     }
     reload.onclick = () => {
         window.location.reload();
