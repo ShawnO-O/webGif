@@ -157,7 +157,8 @@
     var gif = new GIF({
         workers: 1,
         quality: 10,
-        repeat: 0
+        repeat: 0,
+        debug:true
     });
     // var img2 = new Image();
     // img2.src = 'images/h03.png';
@@ -263,17 +264,29 @@
 
         }
 
-        if (count <= 111) {
+        if (count <= 11) {
             //用時間差來取得gif本來的延遲
             gif.addFrame(canvas, { delay: 300 });
             // array.push(canvas)
-            if (count == 111) {
+            if (count == 11) {
                 ok();
             }
         }
         count++;
         // 或者从canvas的上下文复制像素信息
 
+    }
+
+    function ok() {
+        console.log(281)
+        // var i = 0;
+        // array.forEach(element => {
+        //     gif.addFrame(element,{delay:70});
+        //     i++;
+        // });
+        gif.addFrame(ctx2, { copy: true });
+        console.log(gif.length)
+        // gif.removeChild()
     }
 
     //文字上下動 stroke
@@ -365,14 +378,7 @@
 
     var mBlob = null;
 
-    function ok() {
-        // var i = 0;
-        // array.forEach(element => {
-        //     gif.addFrame(element,{delay:70});
-        //     i++;
-        // });
-        gif.addFrame(ctx2, { copy: true });
-    }
+  
 
     //新的gif生成
     function gifFactory() {
@@ -384,7 +390,7 @@
                 // 这里的blob就是gif图片blod格式信息
                 mBlob = blob;
                 openURL();
-                window.location.reload();
+                // window.location.reload();
             });
             gif.render();
         } else {
