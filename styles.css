@@ -1,3 +1,34 @@
-special{
-    color:red
+body {
+    color: purple;
+    /* background-color: rgb(179, 130, 214); */
+    /* background-image: images/bg_1; */
+    background-image: url('images/bg_1.jpg');
+}
+
+.a1 {
+    color: red;
+    text-align: center;
+}
+
+h1 {
+    color: blue
+}
+
+p {
+    color: blueviolet;
+}
+
+.cvs {
+    margin: 0 auto;
+    text-align: center;
+    width: 600;
+}
+
+.container {
+    margin: auto;
+    width: 600px;
+}
+
+.inputa {
+    background: black;
 }
