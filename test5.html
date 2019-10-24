@@ -13,10 +13,11 @@
     <div>
         <canvas class='cvs' id='test2'></canvas>
     </div>
-    <div>
+    <div class="inputa" style="margin-top: 20px; padding-left: 20px;">
         <br>
-        <p class="inputa">請輸入車行名稱(最多7個字)
-            <span> <input id='a1' value="最多七個的喔喔" maxlength="7" /></span>
+        <p>
+            請輸入車行名稱<br>
+            <span> <input style="font-size: 30px;"id='name' value="最多七個的喔喔" maxlength="7" placeholder="車行名稱(最多七字)" /></span>
         </p>
     </div>
     <div class="inputa">
@@ -43,7 +44,7 @@
     </div>
     <div class="inputa">
         <br> 請選擇文字顏色
-        <select id="colorContent" name="colorContent" size="1">
+        <select id="colorContent" style="font-size: 25px ; padding-left: 15px;; " name="colorContent" size="1">
             <option value="White" style="background:white;">White</option>
             <option value="Black" style="background:black;">Black</option>
             <option value="Yellow" style="background:yellow;">Yellow</option>
@@ -72,12 +73,13 @@
             <option value="LimeGreen" style="background:LimeGreen;">LimeGreen</option>
             <option value="Green" style="color:green;">Green</option>
         </select>
+        <br> <br>
     </div>
 
     <br>
     <div class="inputa">
-        請選擇外框顏色
-        <select id="colorFrame" name="colorFrame" size="1">
+        <br>請選擇外框顏色
+        <select id="colorFrame" style="font-size:25px; padding-left: 15px;" name="colorFrame" size="1">
             <option value="White" style="background:white;">White</option>
             <option value="Black" style="background:black;">Black</option>
             <option value="Yellow" style="background:yellow;">Yellow</option>
@@ -106,11 +108,12 @@
             <option value="LimeGreen" style="background:LimeGreen;">LimeGreen</option>
             <option value="Green" style="color:green;">Green</option>
         </select>
+        <br><br>
     </div>
     <br>
     <div class="inputa">
-        請選擇特效<br><br>
-        <input class="" style="WIDTH: 30px; HEIGHT: 30px" id="seMode1" type="checkbox" name="vehicle1" value="Bike">跑馬燈
+        <br>請選擇特效<br><br>
+        <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode1" type="checkbox" name="vehicle1" value="Bike">跑馬燈
         <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode2" type="checkbox" name="vehicle2" value="Car"> 文字放大縮小
         <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode3" type="checkbox" name="vehicle3" value="Boat" hidden="true"> <br><br>
         <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode4" type="checkbox" name="vehicle3" value="Boat"> 邊框閃爍
@@ -123,8 +126,8 @@
     </div>
     <div>
 
-        <button id='btn'>生成gif</button>
-        <button id='reload'>重設</button>
+        <button class="btn" id='btn'>生成gif</button>
+        <button class="btn" id='reload'>重設</button>
     </div>
 
 </body>

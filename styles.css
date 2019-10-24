@@ -1,8 +1,9 @@
 body {
-    color: purple;
-    /* background-color: rgb(179, 130, 214); */
+    color: black;
+    background-color: yellowgreen;
+    font-size: 25px;
     /* background-image: images/bg_1; */
-    background-image: url('images/bg_1.jpg');
+    /* background-image: url('images/bg_1.jpg'); */
 }
 
 .a1 {
@@ -30,5 +31,14 @@ p {
 }
 
 .inputa {
-    background: black;
+    background-color: white;
+    border: 1px gray solid;
+    width: 60%;
+}
+
+.btn {
+    margin-top: 20px;
+    margin-bottom: 50px;
+    padding: 15px;
+    font-size: 25px;
 }
