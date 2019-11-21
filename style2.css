@@ -1,0 +1,20 @@
+.btn {
+    border-radius: 50px;
+    /* border: none; */
+    /* border: solid; */
+    /* text-decoration: none; */
+    /* 高度 / 2 */
+}
+
+.btn2 {
+    border-radius: 50px;
+    border: none;
+    text-decoration: none;
+}
+
+
+/**讓按鈕選擇時的外框消失*/
+
+button:focus {
+    outline: 0;
+}

@@ -10,18 +10,20 @@
     <script src="https://unpkg.com/gifler@0.1.0/gifler.min.js"></script>
     <script src="gif.js"></script>
     <script src="GIFEncoder.js"></script>
-    <div>
-        <canvas class='cvs' id='test2'></canvas>
-    </div>
-    <div class="inputa" style="margin-top: 20px; padding-left: 20px;">
-        <br>
-        <p>
-            請輸入車行名稱<br>
-            <span> <input style="font-size: 30px;"id='name' value="最多七個的喔喔" maxlength="7" placeholder="車行名稱(最多七字)" /></span>
-        </p>
-    </div>
-    <div class="inputa">
-        <span>
+    <div style="text-align:center">
+        <div>
+            <canvas class='cvs' id='test2'></canvas>
+        </div>
+
+        <div class="inputa" style="margin-top: 20px; padding-left: 20px;">
+            <br>
+            <p style=" font-family: Microsoft JhengHei; font-size: 35px;">
+                請輸入車行名稱<br><br>
+                <span> <input style="font-size: 35px; font-family: Microsoft JhengHei;"id='name' value="" maxlength="7" placeholder="車行名稱(最多七字)" /></span>
+            </p>
+        </div>
+        <div class="inputa">
+            <span>
             <form hidden="true">
                 <br>字體大小
                 <select id="fontSize" name="YourLocation">
@@ -33,18 +35,20 @@
                 </select>
             </form>
         </span>
-    </div>
-    <div class="inputa">
-        <form hidden="true">
-            請選擇文字樣式<br><br>
-            <input style="WIDTH: 30px; HEIGHT: 30px" id="mode1" type="radio" name="Fruit" value="1" checked="true"> 內文
-            <input style="WIDTH: 30px; HEIGHT: 30px" id="mode2" type="radio" name="Fruit" value="2"> 外框
-            <input style="WIDTH: 30px; HEIGHT: 30px" id="mode3" type="radio" name="Fruit" value="3">內文+外框
-        </form>
-    </div>
-    <div class="inputa">
-        <br> 請選擇文字顏色
-        <select id="colorContent" style="font-size: 25px ; padding-left: 15px;; " name="colorContent" size="1">
+        </div>
+        <br>
+        <div class="inputa">
+            <form hidden="true">
+                請選擇文字樣式<br><br>
+                <input style="WIDTH: 30px; HEIGHT: 30px" id="mode1" type="radio" name="Fruit" value="1" checked="true"> 內文
+                <input style="WIDTH: 30px; HEIGHT: 30px" id="mode2" type="radio" name="Fruit" value="2"> 外框
+                <input style="WIDTH: 30px; HEIGHT: 30px" id="mode3" type="radio" name="Fruit" value="3">內文+外框
+            </form>
+        </div>
+        <div class="inputa">
+            <br>
+            <p style="font-size: 35px;">請選擇文字顏色</p>
+            <select id="colorContent" style="font-size: 35px ; padding-left: 15px;; " name="colorContent" size="1">
             <option value="White" style="background:white;">White</option>
             <option value="Black" style="background:black;">Black</option>
             <option value="Yellow" style="background:yellow;">Yellow</option>
@@ -73,13 +77,14 @@
             <option value="LimeGreen" style="background:LimeGreen;">LimeGreen</option>
             <option value="Green" style="color:green;">Green</option>
         </select>
-        <br> <br>
-    </div>
+            <br> <br>
+        </div>
 
-    <br>
-    <div class="inputa">
-        <br>請選擇外框顏色
-        <select id="colorFrame" style="font-size:25px; padding-left: 15px;" name="colorFrame" size="1">
+        <br>
+        <div class="inputa">
+            <br>
+            <p style="font-size: 35px;">請選擇外框顏色</p>
+            <select id="colorFrame" style="font-size:35px; padding-left: 15px;" name="colorFrame" size="1">
             <option value="White" style="background:white;">White</option>
             <option value="Black" style="background:black;">Black</option>
             <option value="Yellow" style="background:yellow;">Yellow</option>
@@ -108,28 +113,29 @@
             <option value="LimeGreen" style="background:LimeGreen;">LimeGreen</option>
             <option value="Green" style="color:green;">Green</option>
         </select>
-        <br><br>
-    </div>
-    <br>
-    <div class="inputa">
-        <br>請選擇特效<br><br>
-        <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode1" type="checkbox" name="vehicle1" value="Bike">跑馬燈
-        <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode2" type="checkbox" name="vehicle2" value="Car"> 文字放大縮小
-        <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode3" type="checkbox" name="vehicle3" value="Boat" hidden="true"> <br><br>
-        <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode4" type="checkbox" name="vehicle3" value="Boat"> 邊框閃爍
-        <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode5" type="checkbox" name="vehicle3" value="Boat"> 內文+邊框閃爍
-        <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode6" type="checkbox" name="vehicle3" value="Boat"> 文字上下跳
-        <br><br>
-    </div>
-    <div id="loadingGif" style="padding-top: 20px;padding-bottom: 20px;" hidden="true">
-        <img src="images/ZZ5H.gif" style="width: 100;height: 100;"> 圖片產生中...請稍後
-    </div>
-    <div>
+            <br><br>
+        </div>
+        <br>
+        <div class="inputa">
+            <br>
+            <p style="font-size: 35px;">請選擇特效</p>
+            <input style="WIDTH: 30px; HEIGHT: 30px;font-size: 35px;" id="seMode1" type="checkbox" name="vehicle1" value="Bike">跑馬燈
+            <input style="WIDTH: 30px; HEIGHT: 30px;font-size: 35px;" id="seMode2" type="checkbox" name="vehicle2" value="Car"> 文字放大縮小
+            <input style="WIDTH: 30px; HEIGHT: 30px;font-size: 35px;" id="seMode3" type="checkbox" name="vehicle3" value="Boat" hidden="true">
+            <input style="WIDTH: 30px; HEIGHT: 30px;font-size: 35px;" id="seMode4" type="checkbox" name="vehicle3" value="Boat"> 邊框閃爍<br><br>
+            <input style="WIDTH: 30px; HEIGHT: 30px;font-size: 35px;" id="seMode5" type="checkbox" name="vehicle3" value="Boat"> 內文+邊框閃爍
+            <input style="WIDTH: 30px; HEIGHT: 30px;font-size: 35px;" id="seMode6" type="checkbox" name="vehicle3" value="Boat"> 文字上下跳
+            <br><br>
+        </div>
+        <div id="loadingGif" style="padding-top: 20px;padding-bottom: 20px;" hidden="true">
+            <img src="images/ZZ5H.gif" style="width: 100;height: 100;"> 圖片產生中...請稍後
+        </div>
+        <div>
 
-        <button class="btn" id='btn'>生成gif</button>
-        <button class="btn" id='reload'>重設</button>
+            <button class="btn" id='btn'>生成gif</button>
+            <button class="btn" id='reload'>重設</button>
+        </div>
     </div>
-
 </body>
 
 <script>
