@@ -17,11 +17,11 @@
     <div class="inputa" style="margin-top: 20px; padding-left: 20px;">
         <br>
 
-        <p>
-            請輸入車行名稱<br>
-            <span> <input style="font-size: 30px;" id='name' value="最多七個的喔喔" maxlength="7"
+        <b>
+            請輸入文字
+            <span> <input style="font-size: 30px;" id='name' value="" maxlength="7"
                     placeholder="車行名稱(最多七字)" /></span>
-        </p>
+            </b>
 
     </div>
     <div class="inputa">
@@ -49,8 +49,8 @@
         </form>
     </div>
 
-    <div>
-
+    <div style="margin-top: 20px; padding-left: 20px;  padding-bottom: 20px;">
+        <b>請選擇文字顏色</b></br>
         <img id="img_black" src="images/black_checked.png" />
         <img id="img_red" src="images/red_non.png" />
         <img id="img_green" src="images/green_light_non.png" />
@@ -60,13 +60,18 @@
     </div>
     <br>
     <div class="special">
-        <button type="button" id="s1">跑馬燈</button>
-        <button type="button" id="s2">文字放大縮小</button></br>
-        <button type="button" id="s3">文字閃爍</button>
-        <button type="button" id="s4">文字上下跳</button>
-        <button type="button" id="s5">外框特效</button>
+        <b>請選擇字體特效</b></br>
+        <button class="button2" type="button" id="s1">跑馬燈</button>
+        <button class="button2" type="button" id="s2">文字放大縮小</button></br>
+        <button class="button2" type="button" id="s3">文字閃爍</button>
+        <button class="button2" type="button" id="s4">文字上下跳</button>
+        <button class="button2" type="button" id="s5">外框特效</button>
     </div>
     </br>
+    <div>
+        <button class="button3" type="button">轉成GIF動態賀圖</button>
+        <button class="button3" type="button">重新設定</button>
+    </div>
     <div class="inputa">
         <br>請選擇外框顏色
         <select id="colorFrame" style="font-size:25px; padding-left: 15px;" name="colorFrame" size="1">
@@ -139,8 +144,7 @@
         <br>請選擇特效<br><br>
         <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode1" type="checkbox" name="vehicle1" value="Bike">跑馬燈
         <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode2" type="checkbox" name="vehicle2" value="Car"> 文字放大縮小
-        <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode3" type="checkbox" name="vehicle3" value="Boat"
-            hidden="true"> <br><br>
+        <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode3" type="checkbox" name="vehicle3" value="Boat" hidden="true"> <br><br>
         <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode4" type="checkbox" name="vehicle3" value="Boat"> 邊框閃爍
         <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode5" type="checkbox" name="vehicle3" value="Boat"> 內文+邊框閃爍
         <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode6" type="checkbox" name="vehicle3" value="Boat"> 文字上下跳
@@ -150,8 +154,7 @@
         <img src="images/ZZ5H.gif" style="width: 100;height: 100;"> 圖片產生中...請稍後
     </div>
     <div id="loadingGif" style="padding-top: 20px;padding-bottom: 20px;" hidden="true">
-        <img src="images/ZZ5H.gif" style="width: 100;height: 100;">
-        圖片產生中...請稍後
+        <img src="images/ZZ5H.gif" style="width: 100;height: 100;"> 圖片產生中...請稍後
     </div>
     <div>
 
@@ -170,6 +173,10 @@
     var img_yellow = document.getElementById('img_yellow');
     var img_pink = document.getElementById('img_pink');
     var s1 = document.getElementById('s1');
+    var s2 = document.getElementById('s2');
+    var s3 = document.getElementById('s3');
+    var s4 = document.getElementById('s4');
+    var s5 = document.getElementById('s5');
     var input = document.getElementById('name');
     var canvas = document.getElementById('test2');
     var fontSize = document.getElementById('fontSize');
@@ -209,6 +216,7 @@
     var arrayD = [];
     var fontArraySize = 0;
     var intFontSize = 70;
+
     function onDrawFrame(ctx, frame) {
         if (count > 0) {
             dTime = (Date.now() - time)
@@ -321,16 +329,16 @@
 
     function ok() {
         console.log(281)
-        // var i = 0;
-        // array.forEach(element => {
-        //     gif.addFrame(element,{delay:70});
-        //     i++;
-        // });
+            // var i = 0;
+            // array.forEach(element => {
+            //     gif.addFrame(element,{delay:70});
+            //     i++;
+            // });
         gif.addFrame(ctx2, {
             copy: true
         });
         console.log(gif.length)
-        // gif.removeChild()
+            // gif.removeChild()
     }
 
     //文字上下動 stroke
@@ -413,7 +421,7 @@
     }
 
     var horseColor = ['red', 'orange', 'yellow', 'green', 'blue', '#4b0080', 'purple']
-    //人生跑馬燈
+        //人生跑馬燈
     function HorseRunning(ctx, pos, count) {
         ctx.fillStyle = horseColor[Math.abs((count % fontArraySize) - pos)];
     }
@@ -428,7 +436,7 @@
         if (mBlob == null) {
 
             // gif.addFrame(ctx2, { copy: true });
-            gif.on('finished', function (blob) {
+            gif.on('finished', function(blob) {
 
                 // 这里的blob就是gif图片blod格式信息
                 mBlob = blob;
@@ -520,9 +528,30 @@
         }
     }
 
-    s1.onclick=()=>{
-        console.log("點我")
-        s1.value = "aaa"
+    s1.onclick = () => {
+        console.log("點我1")
+        s1.style.backgroundColor = "black"
+        s1.style.color = "white"
+    }
+    s2.onclick = () => {
+        console.log("點我2")
+        s2.style.backgroundColor = "black"
+        s2.style.color = "white"
+    }
+    s3.onclick = () => {
+        console.log("點我3")
+        s3.style.backgroundColor = "black"
+        s3.style.color = "white"
+    }
+    s4.onclick = () => {
+        console.log("點我4")
+        s4.style.backgroundColor = "black"
+        s4.style.color = "white"
+    }
+    s5.onclick = () => {
+        console.log("點我5")
+        s5.style.backgroundColor = "black"
+        s5.style.color = "white"
     }
 </script>
 
