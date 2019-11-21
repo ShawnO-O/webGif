@@ -31,20 +31,39 @@ p {
 }
 
 .inputa {
-    background-color: white;
+    /* background-color: white;
     border: 1px gray solid;
-    /* width: 60%; */
-    margin-left: 20%;
-    margin-right: 20%;
-    font-family: Microsoft JhengHei;
+    width: 60%; */
 }
 
 .btn {
     margin-top: 20px;
     margin-bottom: 50px;
-    padding: 20px;
-    font-size: 35px;
-    margin-right: 20px;
-    margin-left: 20px;
-    font-family: Microsoft JhengHei;
+
+    padding: 15px;
+    font-size: 25px;
+}
+
+.special{
+    color: rgb(83, 121, 34);
+    padding: 10px;
+    background: white;
+    color: rgb(60, 18, 173);
+    width: 100px;
+	height: 100px;
+	line-height: 70px;
+	border: 1px  red;
+	border-radius: 300px;	/* 高度 */
+}
+
+h{
+    padding: 10px;
+    background: white;
+    color: rgb(60, 18, 173);
+    width: 100px;
+	height: 100px;
+	line-height: 70px;
+	border: 1px  red;
+	border-radius: 300px;	/* 高度 */
+
 }
