@@ -10,20 +10,23 @@
     <script src="https://unpkg.com/gifler@0.1.0/gifler.min.js"></script>
     <script src="gif.js"></script>
     <script src="GIFEncoder.js"></script>
+
     <div>
         <canvas class='cvs' id='test2'></canvas>
     </div>
     <div class="inputa" style="margin-top: 20px; padding-left: 20px;">
         <br>
 
-        <p>
-            請輸入車行名稱<br>
-            <span> <input style="font-size: 30px;"id='name' value="最多七個的喔喔" maxlength="7" placeholder="車行名稱(最多七字)" /></span>
-        </p>
+        <b>
+            請輸入文字
+            <span> <input style="font-size: 30px;" id='name' value="" maxlength="7"
+                    placeholder="車行名稱(最多七字)" /></span>
+            </b>
 
     </div>
     <div class="inputa">
         <span>
+
             <form hidden="true">
                 <br>字體大小
                 <select id="fontSize" name="YourLocation">
@@ -35,6 +38,7 @@
                 </select>
             </form>
         </span>
+
     </div>
     <div class="inputa">
         <form hidden="true">
@@ -44,42 +48,31 @@
             <input style="WIDTH: 30px; HEIGHT: 30px" id="mode3" type="radio" name="Fruit" value="3">內文+外框
         </form>
     </div>
-    <div class="inputa">
-        <br> 請選擇文字顏色
-        <select id="colorContent" style="font-size: 25px ; padding-left: 15px;; " name="colorContent" size="1">
-            <option value="White" style="background:white;">White</option>
-            <option value="Black" style="background:black;">Black</option>
-            <option value="Yellow" style="background:yellow;">Yellow</option>
-            <option value="Gold" style="background:Gold;">Gold </option>
-            <option value="Orange" style="background:orange;">Orange</option>
-            <option value="GoldenRod" style="background:GoldenRod;">GoldenRod </option>
-            <option value="Tomato" style="background:Tomato;">Tomato </option>
-            <option value="Red" style="background:red;">Red</option>
-            <option value="OrangeRed" style="background:OrangeRed;">OrangeRed </option>
-            <option value="Brown" style="background:brown;">Brown</option>
-            <option value="Maroon" style="background:maroon;">Maroon</option>
-            <option value="LightSkyBlue" style="background:LightSkyBlue;">LightSkyBlue </option>
-            <option value="Cyan" style="background:Cyan;">Cyan</option>
-            <option value="SkyBlue" style="background:SkyBlue;">SkyBlue </option>
-            <option value="CornflowerBlue" style="background:CornflowerBlue;">CornflowerBlue </option>
-            <option value="Blue" style="background:blue;">Blue</option>
-            <option value="Navy" style="background:navy;">Navy</option>
-            <option value="SlateBlue" style="background:SlateBlue;">SlateBlue </option>
-            <option value="Magenta" style="background:Magenta;">Magenta </option>
-            <option value="BlueViolet" style="background:BlueViolet ;">BlueViolet </option>
-            <option value="Purple" style="background:purple;" SELECTED>Purple</option>
-            <option value="LightGreen" style="background:LightGreen;">LightGreen </option>
-            <option value="YellowGreen" style="background:YellowGreen;">YellowGreen </option>
-            <option value="Chartreuse" style="background:Chartreuse;">Chartreuse </option>
-            <option value="SpringGreen" style="background:SpringGreen;">SpringGreen </option>
-            <option value="LimeGreen" style="background:LimeGreen;">LimeGreen</option>
-            <option value="Green" style="color:green;">Green</option>
-        </select>
-        <br> <br>
-    </div>
 
+    <div style="margin-top: 20px; padding-left: 20px;  padding-bottom: 20px;">
+        <b>請選擇文字顏色</b></br>
+        <img id="img_black" src="images/black_checked.png" />
+        <img id="img_red" src="images/red_non.png" />
+        <img id="img_green" src="images/green_light_non.png" />
+        <img id="img_blue" src="images/blue_light_non.png" />
+        <img id="img_yellow" src="images/yellow_non.png" />
+        <img id="img_pink" src="images/pink_non.png" />
+    </div>
     <br>
-    <div class="inputa">
+    <div class="special">
+        <b>請選擇字體特效</b></br>
+        <button class="button2" type="button" id="s1">跑馬燈</button>
+        <button class="button2" type="button" id="s2">文字放大縮小</button></br>
+        <button class="button2" type="button" id="s3">文字閃爍</button>
+        <button class="button2" type="button" id="s4">文字上下跳</button>
+        <button class="button2" type="button" id="s5">外框特效</button>
+    </div>
+    </br>
+    <div>
+        <button class="button3" type="button">轉成GIF動態賀圖</button>
+        <button class="button3" type="button">重新設定</button>
+    </div>
+    <div class="inputa" hidden="true">
         <br>請選擇外框顏色
         <select id="colorFrame" style="font-size:25px; padding-left: 15px;" name="colorFrame" size="1">
             <option value="White" style="background:white;">White</option>
@@ -113,7 +106,41 @@
         <br><br>
     </div>
     <br>
-    <div class="inputa">
+
+    <div hidden="true" class="inputa">
+        <br> 請選擇文字顏色
+        <select id="colorContent" style="font-size: 25px ; padding-left: 15px;; " name="colorContent" size="1">
+            <option value="White" style="background:white;">White</option>
+            <option value="Black" style="background:black;">Black</option>
+            <option value="Yellow" style="background:yellow;">Yellow</option>
+            <option value="Gold" style="background:Gold;">Gold </option>
+            <option value="Orange" style="background:orange;">Orange</option>
+            <option value="GoldenRod" style="background:GoldenRod;">GoldenRod </option>
+            <option value="Tomato" style="background:Tomato;">Tomato </option>
+            <option value="Red" style="background:red;">Red</option>
+            <option value="OrangeRed" style="background:OrangeRed;">OrangeRed </option>
+            <option value="Brown" style="background:brown;">Brown</option>
+            <option value="Maroon" style="background:maroon;">Maroon</option>
+            <option value="LightSkyBlue" style="background:LightSkyBlue;">LightSkyBlue </option>
+            <option value="Cyan" style="background:Cyan;">Cyan</option>
+            <option value="SkyBlue" style="background:SkyBlue;">SkyBlue </option>
+            <option value="CornflowerBlue" style="background:CornflowerBlue;">CornflowerBlue </option>
+            <option value="Blue" style="background:blue;">Blue</option>
+            <option value="Navy" style="background:navy;">Navy</option>
+            <option value="SlateBlue" style="background:SlateBlue;">SlateBlue </option>
+            <option value="Magenta" style="background:Magenta;">Magenta </option>
+            <option value="BlueViolet" style="background:BlueViolet ;">BlueViolet </option>
+            <option value="Purple" style="background:purple;" SELECTED>Purple</option>
+            <option value="LightGreen" style="background:LightGreen;">LightGreen </option>
+            <option value="YellowGreen" style="background:YellowGreen;">YellowGreen </option>
+            <option value="Chartreuse" style="background:Chartreuse;">Chartreuse </option>
+            <option value="SpringGreen" style="background:SpringGreen;">SpringGreen </option>
+            <option value="LimeGreen" style="background:LimeGreen;">LimeGreen</option>
+            <option value="Green" style="color:green;">Green</option>
+        </select>
+        <br> <br>
+    </div>
+    <div hidden="true" class="inputa">
         <br>請選擇特效<br><br>
         <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode1" type="checkbox" name="vehicle1" value="Bike">跑馬燈
         <input style="WIDTH: 30px; HEIGHT: 30px" id="seMode2" type="checkbox" name="vehicle2" value="Car"> 文字放大縮小
@@ -127,8 +154,7 @@
         <img src="images/ZZ5H.gif" style="width: 100;height: 100;"> 圖片產生中...請稍後
     </div>
     <div id="loadingGif" style="padding-top: 20px;padding-bottom: 20px;" hidden="true">
-            <img src="images/ZZ5H.gif" style="width: 100;height: 100;">
-            圖片產生中...請稍後
+        <img src="images/ZZ5H.gif" style="width: 100;height: 100;"> 圖片產生中...請稍後
     </div>
     <div>
 
@@ -137,10 +163,20 @@
         <button class="btn" id='reload'>重設</button>
 
     </div>
-
 </body>
 
 <script>
+    var img_black = document.getElementById('img_black');
+    var img_red = document.getElementById('img_red');
+    var img_green = document.getElementById('img_green');
+    var img_blue = document.getElementById('img_blue');
+    var img_yellow = document.getElementById('img_yellow');
+    var img_pink = document.getElementById('img_pink');
+    var s1 = document.getElementById('s1');
+    var s2 = document.getElementById('s2');
+    var s3 = document.getElementById('s3');
+    var s4 = document.getElementById('s4');
+    var s5 = document.getElementById('s5');
     var input = document.getElementById('name');
     var canvas = document.getElementById('test2');
     var fontSize = document.getElementById('fontSize');
@@ -155,6 +191,14 @@
     var seMode4 = document.getElementById('seMode4');
     var seMode5 = document.getElementById('seMode5');
     var seMode6 = document.getElementById('seMode6');
+
+    var modeCheck1 = false;
+    var modeCheck2 = false;
+    var modeCheck3 = false;
+    var modeCheck4 = false;
+    var modeCheck5 = false;
+
+
     var loadingGif = document.getElementById('loadingGif');
     canvas.width = 300;
     canvas.height = 400;
@@ -180,6 +224,7 @@
     var arrayD = [];
     var fontArraySize = 0;
     var intFontSize = 70;
+
     function onDrawFrame(ctx, frame) {
         if (count > 0) {
             dTime = (Date.now() - time)
@@ -233,21 +278,27 @@
 
 
 
-                if (seMode2.checked) {
+                // if (seMode2.checked) {
+                if (modeCheck2) {
                     FontResize(ctx, count, pos)
                 }
 
                 // if (mode1.checked || mode3.checked) {
-                if (seMode1.checked)
+                // if (seMode1.checked)
+                if (modeCheck1)
                     HorseRunning(ctx, pos, count)
-                else if (seMode3.checked)
+                    // else if (seMode3.checked)
+                else if (modeCheck3)
                     ContentFlicker(ctx, count)
                 else if (seMode5.checked) {
+                    // else if (modeCheck4) {
                     ALLFlickerFill(ctx, count)
-                } else
-                    ctx.fillStyle = colorContent.value;
+                } else {
+                    // ctx.fillStyle = colorContent.value;
+                    ctx.fillStyle = selectColorCode;
 
-                if (seMode6.checked)
+                }
+                if (modeCheck4)
                     FontJump(ctx, element, FontX, FontY, pos, count)
                 else
                     ctx.fillText(element, FontX, FontY);
@@ -256,14 +307,16 @@
                 // if (mode2.checked || mode3.checked) {
 
                 ctx.lineWidth = "1";
-                if (seMode4.checked)
+                if (modeCheck5)
                     FrameFlicker(ctx, count)
                 else if (seMode5.checked) {
                     ALLFlicker(ctx, count)
-                } else
-                    ctx.strokeStyle = colorFrame.value;
+                } else {
+                    // ctx.strokeStyle = colorFrame.value;
+                    ctx.strokeStyle = "white"
+                }
 
-                if (seMode6.checked)
+                if (modeCheck4)
                     FontJumpStroke(ctx, element, FontX, FontY, pos, count)
                 else
                     ctx.strokeText(element, FontX, FontY);
@@ -425,7 +478,7 @@
 
         // window.open(URL.createObjectURL(mBlob));
     }
-    gifler('images/b01.gif').frames(canvas, onDrawFrame);
+    gifler('images/base1.gif').frames(canvas, onDrawFrame);
     btn.onclick = () => {
         // console.log("clickTimes:" + clickTimes)
         loadingGif.hidden = false;
@@ -434,6 +487,127 @@
     }
     reload.onclick = () => {
         window.location.reload();
+    }
+
+    var selectColor = "black"
+    var selectColorCode = "#000000"
+    img_black.onclick = () => {
+        colorCheck()
+        img_black.src = "images/black_checked.png"
+        selectColor = "black"
+        selectColorCode = "#000000"
+    }
+
+    img_red.onclick = () => {
+        colorCheck()
+        img_red.src = "images/red_checked.png"
+        selectColor = "red"
+        selectColorCode = "#961417"
+        brown
+    }
+
+    img_green.onclick = () => {
+        colorCheck()
+        img_green.src = "images/green_light_checked.png"
+        selectColor = "green"
+        selectColorCode = "#66ec61"
+    }
+
+    img_blue.onclick = () => {
+        colorCheck()
+        img_blue.src = "images/blue_light_checked.png"
+        selectColor = "blue"
+        selectColorCode = "#57f2f2"
+    }
+
+    img_yellow.onclick = () => {
+        colorCheck()
+        img_yellow.src = "images/yellow_checked.png"
+        selectColor = "yellow"
+        selectColorCode = "#f6b001"
+    }
+
+    img_pink.onclick = () => {
+        colorCheck()
+        img_pink.src = "images/pink_checked.png"
+        selectColor = "pink"
+        selectColorCode = "#ee6b7a"
+    }
+
+    function colorCheck() {
+        console.log(selectColor)
+        if (selectColor == "black")
+            img_black.src = "images/black_non.png"
+        else if (selectColor == "blue") {
+            img_blue.src = "images/blue_light_non.png"
+        } else if (selectColor == "green") {
+            img_green.src = "images/green_light_non.png"
+        } else if (selectColor == "red") {
+            img_red.src = "images/red_non.png"
+        } else if (selectColor == "yellow") {
+            img_yellow.src = "images/yellow_non.png"
+        } else if (selectColor == "pink") {
+            img_pink.src = "images/pink_non.png"
+        }
+    }
+
+    s1.onclick = () => {
+        console.log("點我1")
+        if (modeCheck1) {
+            s1.style.backgroundColor = "#d6d2ba"
+            s1.style.color = "black"
+        } else {
+            s1.style.backgroundColor = "black"
+            s1.style.color = "white"
+        }
+
+        modeCheck1 = !modeCheck1
+    }
+    s2.onclick = () => {
+        if (modeCheck2) {
+            s2.style.backgroundColor = "#d6d2ba"
+            s2.style.color = "black"
+        } else {
+            s2.style.backgroundColor = "black"
+            s2.style.color = "white"
+        }
+        modeCheck2 = !modeCheck2
+        console.log("點我2")
+
+    }
+    s3.onclick = () => {
+        if (modeCheck3) {
+            s3.style.backgroundColor = "#d6d2ba"
+            s3.style.color = "black"
+        } else {
+            s3.style.backgroundColor = "black"
+            s3.style.color = "white"
+        }
+        modeCheck3 = !modeCheck3
+        console.log("點我3")
+
+    }
+    s4.onclick = () => {
+        if (modeCheck4) {
+            s4.style.backgroundColor = "#d6d2ba"
+            s4.style.color = "black"
+        } else {
+            s4.style.backgroundColor = "black"
+            s4.style.color = "white"
+        }
+        console.log("點我4")
+        modeCheck4 = !modeCheck4
+    }
+    s5.onclick = () => {
+        if (modeCheck5) {
+            s5.style.backgroundColor = "#d6d2ba"
+            s5.style.color = "black"
+        } else {
+            s5.style.backgroundColor = "black"
+            s5.style.color = "white"
+        }
+        console.log("點我5")
+        modeCheck5 = !modeCheck5
     }
 </script>
 
