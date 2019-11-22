@@ -107,17 +107,22 @@ b {
     /* Green */
     border: none;
     color: black;
-    padding: 3px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 3px;
+    padding-bottom: 3px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 30px;
     margin: 4px 2px;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: 20px;
 }
 
 .button3 {
+    margin-left: 16dp;
+    margin-right: 16dp;
     font-weight: 600;
     background-color: white;
     /* Green */
@@ -127,8 +132,15 @@ b {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 25px;
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 4px;
+}
+
+.colorImg {
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 60px;
+    height: 60px;
 }

@@ -26,19 +26,18 @@
     </div>
 
 
-    <div style="margin-top: 20px; padding-left: 20px;  padding-bottom: 20px;">
+    <div style="margin-top: 20px; padding-left: 20px;  ">
         <b>請選擇文字顏色</b></br>
-        <img id="img_black" src="images/black_checked.png" />
-        <img id="img_red" src="images/red_non.png" />
-        <img id="img_green" src="images/green_light_non.png" />
-        <img id="img_blue" src="images/blue_light_non.png" />
-        <img id="img_yellow" src="images/yellow_non.png" />
-        <img id="img_pink" src="images/pink_non.png" />
+        <img class="colorImg" id="img_black" src="images/black_checked.png" />
+        <img class="colorImg" id="img_red" src="images/red_non.png" />
+        <img class="colorImg" id="img_green" src="images/green_light_non.png" />
+        <img class="colorImg" id="img_blue" src="images/blue_light_non.png" />
+        <img class="colorImg" id="img_yellow" src="images/yellow_non.png" />
+        <img class="colorImg" id="img_pink" src="images/pink_non.png" />
     </div>
-    <br>
-    <div class="special">
+    <div style="margin-top: 20px; padding-left: 20px;  padding-bottom: 20px;" class="special">
         <b>請選擇字體特效</b></br>
-        <button class="button2" type="button" id="s1">跑馬燈</button>
+        <button class="button2" type="button" id="s1">跑馬燈特效</button>
         <button class="button2" type="button" id="s2">文字放大縮小</button></br>
         <button class="button2" type="button" id="s3">文字閃爍</button>
         <button class="button2" type="button" id="s4">文字上下跳</button>
@@ -146,6 +145,14 @@
         //字型大小
         ctx.font = "bold " + intFontSize + "px serif";
 
+        ctx.drawImage(img, 90, 450)
+        ctx.drawImage(img, 135, 450)
+        ctx.drawImage(img, 181, 450)
+        ctx.drawImage(img, 227, 450)
+        ctx.drawImage(img, 273, 450)
+        ctx.drawImage(img, 319, 450)
+        ctx.drawImage(img, 365, 450)
+
 
         var ss = input.value.split('');
         fontArraySize = ss.length;
@@ -171,8 +178,8 @@
 
 
                 var FontY = frame.height - 40;
-                ctx.drawImage(img, FontX - 20, FontY - 60)
 
+                console.log((FontX - 20) + ":" + (FontY - 60))
 
 
                 // if (seMode2.checked) {
