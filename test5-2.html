@@ -10,7 +10,7 @@
     <script src="https://unpkg.com/gifler@0.1.0/gifler.min.js"></script>
     <script src="gif.js"></script>
     <script src="GIFEncoder.js"></script>
-
+    <script src="FileSaver.js"></script>
     <div>
         <canvas class='cvs' id='test2'></canvas>
     </div>
@@ -534,11 +534,12 @@
 
             // gif.addFrame(ctx2, { copy: true });
             gif.on('finished', function(blob) {
-
+                loadingGif.hidden = true;
                 // 这里的blob就是gif图片blod格式信息
                 mBlob = blob;
                 openURL();
-                window.location.reload();
+                // window.location.reload();
+                // saveAs(blob, "hangge.gif");
             });
             gif.render();
         } else {
@@ -549,16 +550,16 @@
     //共用
     function openURL() {
         //下载动作
-        // var el = document.createElement('a');
-        // el.href = URL.createObjectURL(mBlob);
-        // el.download = input.value; //设置下载文件名称
-        // document.body.appendChild(el);
-        // var evt = document.createEvent("MouseEvents");
-        // evt.initEvent("click", false, false);
-        // el.dispatchEvent(evt);
-        // document.body.removeChild(el);
+        var el = document.createElement('a');
+        el.href = URL.createObjectURL(mBlob);
+        el.download = input.value; //设置下载文件名称
+        document.body.appendChild(el);
+        var evt = document.createEvent("MouseEvents");
+        evt.initEvent("click", false, false);
+        el.dispatchEvent(evt);
+        document.body.removeChild(el);
 
-        window.open(URL.createObjectURL(mBlob));
+        // window.open(URL.createObjectURL(mBlob));
     }
     gifler('images/base1.gif').frames(canvas, onDrawFrame);
     btn.onclick = () => {
