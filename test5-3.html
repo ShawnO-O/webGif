@@ -11,6 +11,7 @@
     <script src="gif.js"></script>
     <script src="GIFEncoder.js"></script>
     <script src="FileSaver.js"></script>
+    <script src="Bolb.js"></script>
     <div>
         <canvas class='cvs' id='test2'></canvas>
     </div>
@@ -537,9 +538,9 @@
                 loadingGif.hidden = true;
                 // 这里的blob就是gif图片blod格式信息
                 mBlob = blob;
-                openURL();
+                // openURL();
                 // window.location.reload();
-                // saveAs(blob, "hangge.gif");
+                saveAs(blob, "hangge.gif");
             });
             gif.render();
         } else {

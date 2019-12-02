@@ -1,18 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Canvas Gif</title>
     <script src="gif.js"></script>
+        <script src="jquery-3.4.1.min.js"></script>
 </head>
+
 <body>
-<canvas width="480" height="480" id="canvas">
-    
-</canvas>
-<img src="images/1.png" id="img">
-<img src="" id="result">
+    <form id="upload" enctype="multipart/form-data" method="post">
+        <input type="file" name="file" id="pic" />
+        <input type="button" value="提交" onclick="uploadPic();" />
+        <span class="showUrl"></span>
+        <img src="" class="showPic" alt="">
+    </form>
 </body>
 <script>
+    function uploadPic() {
+        var form = document.getElementById('upload'),
+            formData = new FormData(form);
+        $.ajax({
+            url: "https://127.0.0.1/webGif/",
+            type: "post",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (res) {
+                if (res) {
+                    alert("上傳成功！");
+                }
+                console.log(res);
+                $("#pic").val("");
+                $(".showUrl").html(res);
+                $(".showPic").attr("src", res);
+            },
+            error: function (err) {
+                alert("網路連線失敗,稍後重試", err);
+            }
+        })
+    }
+
     window.onload = function () {
         var oImg = document.getElementById("img");
         var canvas = document.getElementById('canvas');
@@ -25,30 +53,30 @@
             // transparent: "#fff",
             // background: '#ffffff',
         });
-        gif.on("finished",function(blob){
+        gif.on("finished", function (blob) {
             console.log(URL.createObjectURL(blob));
             var file = new FileReader();
             file.readAsDataURL(blob);
-            file.onload = function(){
+            file.onload = function () {
                 document.getElementById("result").setAttribute("src", file.result)
             }
 
         })
-        
+
         var imgList = [
             './images/a.jpg',
             './images/b.png',
             './images/b1.png',
         ];
-        var imgObjList = [],count = 0;
+        var imgObjList = [], count = 0;
 
-        for (let i=0; i<imgList.length; i++){
+        for (let i = 0; i < imgList.length; i++) {
             var tmpImg = new Image();
             imgObjList.push(tmpImg);
             tmpImg.src = imgList[i];
             tmpImg.onload = function () {
                 count++;
-                if (count === imgList.length ){
+                if (count === imgList.length) {
                     generateGif(imgObjList);
                 }
             }
@@ -57,17 +85,18 @@
 
         function generateGif(imgObjList) {
 
-            for (let i=0;i<imgObjList.length;i++){
+            for (let i = 0; i < imgObjList.length; i++) {
                 ctx.save();
-                ctx.drawImage(oImg,50,100,220,220);
-                ctx.drawImage(imgObjList[i],0,0,canvas.width,canvas.height);
+                ctx.drawImage(oImg, 50, 100, 220, 220);
+                ctx.drawImage(imgObjList[i], 0, 0, canvas.width, canvas.height);
                 ctx.restore();
-                gif.addFrame(canvas,{copy:true,delay:300})
-                ctx.clearRect(0,0,canvas.width,canvas.height)
+                gif.addFrame(canvas, { copy: true, delay: 300 })
+                ctx.clearRect(0, 0, canvas.width, canvas.height)
             }
             gif.render();
         }
 
     }
 </script>
+
 </html>
