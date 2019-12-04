@@ -11,7 +11,8 @@
     <script src="gif.js"></script>
     <script src="GIFEncoder.js"></script>
     <script src="FileSaver.js"></script>
-    <!-- <script src="Bolb.js"></script> -->
+    <script src="Bolb.js"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <div>
         <canvas class='cvs' id='test2'></canvas>
     </div>
@@ -22,7 +23,7 @@
             請輸入文字
             <span> <input style="font-size: 30px;font-family: MyHelvetica;" id='name' value="不問歲月任風歌" maxlength="7"
                     placeholder="車行名稱(最多七字)" /></span>
-        </b>
+            </b>
 
     </div>
 
@@ -57,10 +58,19 @@
         <button id='btn' class="button3" type="button">轉成GIF動態賀圖</button>
         <button id='reload' class="button3" type="button">重新設定</button>
     </div>
-    <div id="iosSaver" hidden="true">
-        <b>請使用長按儲存賀圖</b></br>
-        <img id="imgSucessPhoto">
-    </div>
+
+
+    <body>
+        <div class="bgColor">
+            <form id="uploadForm" action="upload.php" method="post">
+                <div id="targetLayer">No Image</div>
+                <div id="uploadFormLayer">
+                    <input name="userImage" type="file" class="inputFile" /><br />
+                    <input type="submit" value="Submit" class="btnSubmit" />
+            </form>
+        </div>
+        </div>
+    </body>
     <!-- <div> -->
     <!-- <button class="btn" id='btn'>生成gif</button> -->
     <!-- <button class="btn" id='reload'>重設</button> -->
@@ -264,7 +274,7 @@
                     FontX = widthBase + (widthBase * 2 / ss.length * pos) - 40 + (pos * 4);
                 } else if (ss.length > 4) {
                     widthBase = widthBase - 10
-                    // console.log(widthBase + "+" + widthBase + "*2/" + ss.length + "*" + pos);
+                    console.log(widthBase + "+" + widthBase + "*2/" + ss.length + "*" + pos);
                     FontX = widthBase + (widthBase * 2 / ss.length * pos) - 20 + (pos * 7);
                 } else {
                     FontX = widthBase + (widthBase * 2 / ss.length * pos) - 15
@@ -372,13 +382,13 @@
                 // if (seMode1.checked)
                 if (modeCheck1)
                     HorseRunning(ctx, pos, count)
-                // else if (seMode3.checked)
+                    // else if (seMode3.checked)
                 else if (modeCheck3)
                     ContentFlicker(ctx, count)
-                // else if (seMode5.checked) {
-                // else if (modeCheck4) {
-                // ALLFlickerFill(ctx, count)
-                // }
+                    // else if (seMode5.checked) {
+                    // else if (modeCheck4) {
+                    // ALLFlickerFill(ctx, count)
+                    // }
                 else {
                     // ctx.fillStyle = colorContent.value;
                     ctx.fillStyle = selectColorCode;
@@ -395,9 +405,9 @@
                 ctx.lineWidth = "1";
                 if (modeCheck5)
                     FrameFlicker(ctx, count)
-                // else if (seMode5.checked) {
-                //     ALLFlicker(ctx, count)
-                // } 
+                    // else if (seMode5.checked) {
+                    //     ALLFlicker(ctx, count)
+                    // } 
                 else {
                     // ctx.strokeStyle = colorFrame.value;
                     ctx.strokeStyle = "white"
@@ -431,16 +441,16 @@
 
     function ok() {
         console.log(281)
-        // var i = 0;
-        // array.forEach(element => {
-        //     gif.addFrame(element,{delay:70});
-        //     i++;
-        // });
+            // var i = 0;
+            // array.forEach(element => {
+            //     gif.addFrame(element,{delay:70});
+            //     i++;
+            // });
         gif.addFrame(ctx2, {
             copy: true
         });
         console.log(gif.length)
-        // gif.removeChild()
+            // gif.removeChild()
     }
 
     //文字上下動 stroke
@@ -523,7 +533,7 @@
     }
 
     var horseColor = ['red', 'orange', 'yellow', 'green', 'blue', '#4b0080', 'purple']
-    //人生跑馬燈
+        //人生跑馬燈
     function HorseRunning(ctx, pos, count) {
         ctx.fillStyle = horseColor[Math.abs((count % fontArraySize) - pos)];
     }
@@ -538,33 +548,32 @@
         if (mBlob == null) {
 
             // gif.addFrame(ctx2, { copy: true });
-            gif.on('finished', function (blob) {
+            gif.on('finished', function(blob) {
                 loadingGif.hidden = true;
                 // 这里的blob就是gif图片blod格式信息
                 mBlob = blob;
                 // openURL();
                 // window.location.reload();
-                // test.value = navigator.userAgent
-                console.log("Agent:" + navigator.userAgent)
-                console.log("Agent:" + navigator.userAgent.indexOf("Safari"))
-                // if (navigator.userAgent.match("Safari")) {
-                //     forIosSafari()
-                // } else {
-                    saveAs(blob, "hotcard.gif");
-                    window.location.reload();
-                // }
+                // saveAs(blob, "hangge.gif");
+                // blob.preventDefault();
+				$.ajax({
+					url: "upload.php",
+					type: "POST",
+					data: new FormData(blob),
+					contentType: false,
+					cache: false,
+					processData: false,
+					success: function (data) {
+						$("#targetLayer").html(data);
+					},
+					error: function () {
+					}
+				});
             });
             gif.render();
         } else {
             openURL();
         }
-    }
-
-    function forIosSafari() {
-        iosSaver.hidden = false
-        var file = new File([blob], "name.gif");
-        var gif = new gif(file)
-        imgSucessPhoto.src = URL.createObjectURL(file);
     }
 
     //共用

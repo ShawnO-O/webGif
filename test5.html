@@ -45,7 +45,7 @@
     </div>
     </br>
 
-<!-- 
+    <!-- 
     <div id="loadingGif" style="padding-top: 20px;padding-bottom: 20px;" hidden="true">
         <img src="images/ZZ5H.gif" style="width: 100;height: 100;"> 圖片產生中...請稍後
     </div> -->
@@ -57,10 +57,10 @@
         <button id='reload' class="button3" type="button">重新設定</button>
     </div>
 
-    <div>
+    <!-- <div id="iosSaver" hidden="true">
         <b>請使用長按儲存圖片</b></br>
-        <img id="imgSucessPhoto" src="images/h02.png">
-    </div>
+        <img id="imgSucessPhoto">
+    </div> -->
     <!-- <div> -->
     <!-- <button class="btn" id='btn'>生成gif</button> -->
     <!-- <button class="btn" id='reload'>重設</button> -->
@@ -69,6 +69,8 @@
 
 <script>
     var imgSucessPhoto = document.getElementById('imgSucessPhoto');
+    var iosSaver = document.getElementById('iosSaver');
+
 
     var img_black = document.getElementById('img_black');
     var img_red = document.getElementById('img_red');
@@ -128,7 +130,7 @@
     var fontArraySize = 0;
     var intFontSize = 70;
 
-    
+
 
 
     var mBlob = null;
@@ -147,19 +149,31 @@
                 // openURL();
                 // downloadImg();
                 // window.location.reload();
-
                 // var myFile = blobToFile(blob, "image.gif");
-                var file = new File([blob], "name.gif");
-                var gif = new gif(file)
-                imgSucessPhoto.src = URL.createObjectURL(file);
-                openURL2(gif)
                 // imgSucessPhoto.src =  URL.createObjectURL(gif)
+                console.log("Agent:" + navigator.userAgent)
+                if (navigator.userAgent.match("Safari")) {
+                    forIosSafari()
+                } else {
+                    forAndroid()
+                }
             });
             gif.render();
 
         } else {
             openURL();
         }
+    }
+
+    function forIosSafari() {
+        iosSaver.hidden = false
+        var file = new File([blob], "name.gif");
+        var gif = new gif(file)
+        imgSucessPhoto.src = URL.createObjectURL(file);
+    }
+
+    function forAndroid() {
+        openURL2(gif)
     }
 
     function downloadImg() {
@@ -181,6 +195,7 @@
         el.dispatchEvent(evt);
         document.body.removeChild(el);
 
+        window.location.reload();
         // window.open(URL.createObjectURL(mBlob));
     }
 
@@ -202,11 +217,11 @@
     gifler('images/base1.gif').frames(canvas, onDrawFrame);
     btn.onclick = () => {
         // console.log("clickTimes:" + clickTimes)
-        loadingGif.hidden = false;
+
 
         gifFactory();
     }
-    
+
     reload.onclick = () => {
         window.location.reload();
     }
@@ -623,7 +638,7 @@
         if (mBlob == null) {
 
             // gif.addFrame(ctx2, { copy: true });
-            gif.on('finished', function(blob) {
+            gif.on('finished', function (blob) {
 
                 // 这里的blob就是gif图片blod格式信息
                 mBlob = blob;

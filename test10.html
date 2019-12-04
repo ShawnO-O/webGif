@@ -11,7 +11,6 @@
     <script src="gif.js"></script>
     <script src="GIFEncoder.js"></script>
     <script src="FileSaver.js"></script>
-    <!-- <script src="Bolb.js"></script> -->
     <div>
         <canvas class='cvs' id='test2'></canvas>
     </div>
@@ -46,10 +45,10 @@
     </div>
     </br>
 
-
+    <!-- 
     <div id="loadingGif" style="padding-top: 20px;padding-bottom: 20px;" hidden="true">
         <img src="images/ZZ5H.gif" style="width: 100;height: 100;"> 圖片產生中...請稍後
-    </div>
+    </div> -->
     <div id="loadingGif" style="padding-top: 20px;padding-bottom: 20px;" hidden="true">
         <img src="images/ZZ5H.gif" style="width: 100;height: 100;"> 圖片產生中...請稍後
     </div>
@@ -57,7 +56,8 @@
         <button id='btn' class="button3" type="button">轉成GIF動態賀圖</button>
         <button id='reload' class="button3" type="button">重新設定</button>
     </div>
-    <div id="iosSaver" hidden="true">
+
+    <div id="iosSaver" hidden="false">
         <b>請使用長按儲存賀圖</b></br>
         <img id="imgSucessPhoto">
     </div>
@@ -68,6 +68,10 @@
 </body>
 
 <script>
+    var imgSucessPhoto = document.getElementById('imgSucessPhoto');
+    var iosSaver = document.getElementById('iosSaver');
+    
+
     var img_black = document.getElementById('img_black');
     var img_red = document.getElementById('img_red');
     var img_green = document.getElementById('img_green');
@@ -125,6 +129,104 @@
     var arrayD = [];
     var fontArraySize = 0;
     var intFontSize = 70;
+
+
+
+
+    var mBlob = null;
+
+
+    //新的gif生成
+    function gifFactory() {
+        if (mBlob == null) {
+
+            // gif.addFrame(ctx2, { copy: true });
+            gif.on('finished', function (blob) {
+                loadingGif.hidden = true
+                // 这里的blob就是gif图片blod格式信息
+                mBlob = blob;
+                // imgSucessPhoto.src = blob
+                // openURL();
+                // downloadImg();
+                // window.location.reload();
+                // var myFile = blobToFile(blob, "image.gif");
+                // imgSucessPhoto.src =  URL.createObjectURL(gif)
+                console.log("Agent:" + navigator.userAgent)
+                if (navigator.userAgent.match("Safari")) {
+                    forIosSafari()
+                } else {
+                    // forAndroid()
+                    saveAs(blob, "HotCar.gif");
+                }
+            });
+            gif.render();
+
+        } else {
+            openURL();
+        }
+    }
+
+    function forIosSafari() {
+        iosSaver.hidden = false
+        var file = new File([blob], "name.gif");
+        var gif = new gif(file)
+        imgSucessPhoto.src = URL.createObjectURL(file);
+    }
+
+    function forAndroid() {
+        openURL2(gif)
+    }
+
+    function downloadImg() {
+        let aLink = document.createElement('a')
+        aLink.download = 'fileName.gif' // 文件名后缀需要和dataurl表示的相同，否则可能乱码
+        aLink.href = URL.createObjectURL(mBlob);
+        aLink.click()
+    }
+
+    //共用
+    function openURL2(file) {
+        //下载动作
+        var el = document.createElement('a');
+        el.href = URL.createObjectURL(file);
+        el.download = input.value; //设置下载文件名称
+        document.body.appendChild(el);
+        var evt = document.createEvent("MouseEvents");
+        evt.initEvent("click", false, false);
+        el.dispatchEvent(evt);
+        document.body.removeChild(el);
+
+        // window.location.reload();
+        // window.open(URL.createObjectURL(mBlob));
+    }
+
+    //共用
+    function openURL() {
+        //下载动作
+        // var el = document.createElement('a');
+        // el.href = URL.createObjectURL(mBlob);
+        // el.download = input.value; //设置下载文件名称
+        // document.body.appendChild(el);
+        // var evt = document.createEvent("MouseEvents");
+        // evt.initEvent("click", false, false);
+        // el.dispatchEvent(evt);
+        // document.body.removeChild(el);
+
+        // window.open(URL.createObjectURL(mBlob));
+    }
+
+    gifler('images/base1.gif').frames(canvas, onDrawFrame);
+    btn.onclick = () => {
+        // console.log("clickTimes:" + clickTimes)
+
+
+        gifFactory();
+    }
+
+    reload.onclick = () => {
+        window.location.reload();
+    }
+
 
     function onDrawFrame(ctx, frame) {
         if (count > 0) {
@@ -430,7 +532,7 @@
     }
 
     function ok() {
-        console.log(281)
+        // console.log(281)
         // var i = 0;
         // array.forEach(element => {
         //     gif.addFrame(element,{delay:70});
@@ -439,13 +541,13 @@
         gif.addFrame(ctx2, {
             copy: true
         });
-        console.log(gif.length)
+        // console.log(gif.length)
         // gif.removeChild()
     }
 
     //文字上下動 stroke
     function FontJumpStroke(ctx, element, FontX, FontY, pos, count) {
-        console.log(FontX, pos, count % 5);
+        // console.log(FontX, pos, count % 5);
         var mX = 0;
         if (count % fontArraySize == pos) {
             mX = FontY - 60
@@ -529,7 +631,6 @@
     }
 
 
-
     var mBlob = null;
 
 
@@ -539,20 +640,11 @@
 
             // gif.addFrame(ctx2, { copy: true });
             gif.on('finished', function (blob) {
-                loadingGif.hidden = true;
+
                 // 这里的blob就是gif图片blod格式信息
                 mBlob = blob;
-                // openURL();
+                openURL();
                 // window.location.reload();
-                // test.value = navigator.userAgent
-                console.log("Agent:" + navigator.userAgent)
-                console.log("Agent:" + navigator.userAgent.indexOf("Safari"))
-                // if (navigator.userAgent.match("Safari")) {
-                //     forIosSafari()
-                // } else {
-                    saveAs(blob, "hotcard.gif");
-                    window.location.reload();
-                // }
             });
             gif.render();
         } else {
@@ -560,36 +652,31 @@
         }
     }
 
-    function forIosSafari() {
-        iosSaver.hidden = false
-        var file = new File([blob], "name.gif");
-        var gif = new gif(file)
-        imgSucessPhoto.src = URL.createObjectURL(file);
-    }
-
     //共用
     function openURL() {
         //下载动作
-        var el = document.createElement('a');
-        el.href = URL.createObjectURL(mBlob);
-        el.download = input.value; //设置下载文件名称
-        document.body.appendChild(el);
-        var evt = document.createEvent("MouseEvents");
-        evt.initEvent("click", false, false);
-        el.dispatchEvent(evt);
-        document.body.removeChild(el);
+        // var el = document.createElement('a');
+        // el.href = URL.createObjectURL(mBlob);
+        // el.download = input.value; //设置下载文件名称
+        // document.body.appendChild(el);
+        // var evt = document.createEvent("MouseEvents");
+        // evt.initEvent("click", false, false);
+        // el.dispatchEvent(evt);
+        // document.body.removeChild(el);
 
-        // window.open(URL.createObjectURL(mBlob));
+        window.open(URL.createObjectURL(mBlob));
     }
     gifler('images/base1.gif').frames(canvas, onDrawFrame);
     btn.onclick = () => {
         // console.log("clickTimes:" + clickTimes)
         loadingGif.hidden = false;
+
         gifFactory();
     }
     reload.onclick = () => {
         window.location.reload();
     }
+
 
     var selectColor = "black"
     var selectColorCode = "#000000"
@@ -637,7 +724,7 @@
     }
 
     function colorCheck() {
-        console.log(selectColor)
+        // console.log(selectColor)
         if (selectColor == "black")
             img_black.src = "images/black_non.png"
         else if (selectColor == "blue") {
@@ -654,7 +741,7 @@
     }
 
     s1.onclick = () => {
-        console.log("點我1")
+        // console.log("點我1")
         if (modeCheck1) {
             s1.style.backgroundColor = "#d6d2ba"
             s1.style.color = "black"
@@ -674,7 +761,7 @@
             s2.style.color = "white"
         }
         modeCheck2 = !modeCheck2
-        console.log("點我2")
+        // console.log("點我2")
 
     }
     s3.onclick = () => {
@@ -686,7 +773,7 @@
             s3.style.color = "white"
         }
         modeCheck3 = !modeCheck3
-        console.log("點我3")
+        // console.log("點我3")
 
     }
     s4.onclick = () => {
@@ -697,7 +784,7 @@
             s4.style.backgroundColor = "black"
             s4.style.color = "white"
         }
-        console.log("點我4")
+        // console.log("點我4")
         modeCheck4 = !modeCheck4
     }
     s5.onclick = () => {
@@ -708,7 +795,7 @@
             s5.style.backgroundColor = "black"
             s5.style.color = "white"
         }
-        console.log("點我5")
+        // console.log("點我5")
         modeCheck5 = !modeCheck5
     }
 </script>
