@@ -11,8 +11,8 @@
     <script src="gif.js"></script>
     <script src="GIFEncoder.js"></script>
     <script src="FileSaver.js"></script>
-    <script src="Bolb.js"></script>
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <!-- <script src="Bolb.js"></script> -->
+    <img src="images/new3.gif">
     <div>
         <canvas class='cvs' id='test2'></canvas>
     </div>
@@ -23,7 +23,7 @@
             請輸入文字
             <span> <input style="font-size: 30px;font-family: MyHelvetica;" id='name' value="不問歲月任風歌" maxlength="7"
                     placeholder="車行名稱(最多七字)" /></span>
-            </b>
+        </b>
 
     </div>
 
@@ -58,19 +58,10 @@
         <button id='btn' class="button3" type="button">轉成GIF動態賀圖</button>
         <button id='reload' class="button3" type="button">重新設定</button>
     </div>
-
-
-    <body>
-        <div class="bgColor">
-            <form id="uploadForm" action="upload.php" method="post">
-                <div id="targetLayer">No Image</div>
-                <div id="uploadFormLayer">
-                    <input name="userImage" type="file" class="inputFile" /><br />
-                    <input type="submit" value="Submit" class="btnSubmit" />
-            </form>
-        </div>
-        </div>
-    </body>
+    <div id="iosSaver" hidden="true">
+        <b>請使用長按儲存賀圖</b></br>
+        <img id="imgSucessPhoto">
+    </div>
     <!-- <div> -->
     <!-- <button class="btn" id='btn'>生成gif</button> -->
     <!-- <button class="btn" id='reload'>重設</button> -->
@@ -274,7 +265,7 @@
                     FontX = widthBase + (widthBase * 2 / ss.length * pos) - 40 + (pos * 4);
                 } else if (ss.length > 4) {
                     widthBase = widthBase - 10
-                    console.log(widthBase + "+" + widthBase + "*2/" + ss.length + "*" + pos);
+                        // console.log(widthBase + "+" + widthBase + "*2/" + ss.length + "*" + pos);
                     FontX = widthBase + (widthBase * 2 / ss.length * pos) - 20 + (pos * 7);
                 } else {
                     FontX = widthBase + (widthBase * 2 / ss.length * pos) - 15
@@ -554,26 +545,27 @@
                 mBlob = blob;
                 // openURL();
                 // window.location.reload();
-                // saveAs(blob, "hangge.gif");
-                // blob.preventDefault();
-				$.ajax({
-					url: "upload.php",
-					type: "POST",
-					data: new FormData(blob),
-					contentType: false,
-					cache: false,
-					processData: false,
-					success: function (data) {
-						$("#targetLayer").html(data);
-					},
-					error: function () {
-					}
-				});
+                // test.value = navigator.userAgent
+                console.log("Agent:" + navigator.userAgent)
+                console.log("Agent:" + navigator.userAgent.indexOf("Safari"))
+                    // if (navigator.userAgent.match("Safari")) {
+                    //     forIosSafari()
+                    // } else {
+                saveAs(blob, "hotcard.gif");
+                window.location.reload();
+                // }
             });
             gif.render();
         } else {
             openURL();
         }
+    }
+
+    function forIosSafari() {
+        iosSaver.hidden = false
+        var file = new File([blob], "name.gif");
+        var gif = new gif(file)
+        imgSucessPhoto.src = URL.createObjectURL(file);
     }
 
     //共用
@@ -590,7 +582,7 @@
 
         // window.open(URL.createObjectURL(mBlob));
     }
-    gifler('images/base1.gif').frames(canvas, onDrawFrame);
+    gifler('images/HBD-CASUL.gif').frames(canvas, onDrawFrame);
     btn.onclick = () => {
         // console.log("clickTimes:" + clickTimes)
         loadingGif.hidden = false;

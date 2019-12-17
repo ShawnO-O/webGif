@@ -12,6 +12,7 @@
     <script src="GIFEncoder.js"></script>
     <script src="FileSaver.js"></script>
     <!-- <script src="Bolb.js"></script> -->
+    <img src="images/new1.gif">
     <div>
         <canvas class='cvs' id='test2'></canvas>
     </div>
@@ -264,7 +265,7 @@
                     FontX = widthBase + (widthBase * 2 / ss.length * pos) - 40 + (pos * 4);
                 } else if (ss.length > 4) {
                     widthBase = widthBase - 10
-                    // console.log(widthBase + "+" + widthBase + "*2/" + ss.length + "*" + pos);
+                        // console.log(widthBase + "+" + widthBase + "*2/" + ss.length + "*" + pos);
                     FontX = widthBase + (widthBase * 2 / ss.length * pos) - 20 + (pos * 7);
                 } else {
                     FontX = widthBase + (widthBase * 2 / ss.length * pos) - 15
@@ -372,13 +373,13 @@
                 // if (seMode1.checked)
                 if (modeCheck1)
                     HorseRunning(ctx, pos, count)
-                // else if (seMode3.checked)
+                    // else if (seMode3.checked)
                 else if (modeCheck3)
                     ContentFlicker(ctx, count)
-                // else if (seMode5.checked) {
-                // else if (modeCheck4) {
-                // ALLFlickerFill(ctx, count)
-                // }
+                    // else if (seMode5.checked) {
+                    // else if (modeCheck4) {
+                    // ALLFlickerFill(ctx, count)
+                    // }
                 else {
                     // ctx.fillStyle = colorContent.value;
                     ctx.fillStyle = selectColorCode;
@@ -395,9 +396,9 @@
                 ctx.lineWidth = "1";
                 if (modeCheck5)
                     FrameFlicker(ctx, count)
-                // else if (seMode5.checked) {
-                //     ALLFlicker(ctx, count)
-                // } 
+                    // else if (seMode5.checked) {
+                    //     ALLFlicker(ctx, count)
+                    // } 
                 else {
                     // ctx.strokeStyle = colorFrame.value;
                     ctx.strokeStyle = "white"
@@ -431,16 +432,16 @@
 
     function ok() {
         console.log(281)
-        // var i = 0;
-        // array.forEach(element => {
-        //     gif.addFrame(element,{delay:70});
-        //     i++;
-        // });
+            // var i = 0;
+            // array.forEach(element => {
+            //     gif.addFrame(element,{delay:70});
+            //     i++;
+            // });
         gif.addFrame(ctx2, {
             copy: true
         });
         console.log(gif.length)
-        // gif.removeChild()
+            // gif.removeChild()
     }
 
     //文字上下動 stroke
@@ -523,7 +524,7 @@
     }
 
     var horseColor = ['red', 'orange', 'yellow', 'green', 'blue', '#4b0080', 'purple']
-    //人生跑馬燈
+        //人生跑馬燈
     function HorseRunning(ctx, pos, count) {
         ctx.fillStyle = horseColor[Math.abs((count % fontArraySize) - pos)];
     }
@@ -538,7 +539,7 @@
         if (mBlob == null) {
 
             // gif.addFrame(ctx2, { copy: true });
-            gif.on('finished', function (blob) {
+            gif.on('finished', function(blob) {
                 loadingGif.hidden = true;
                 // 这里的blob就是gif图片blod格式信息
                 mBlob = blob;
@@ -547,11 +548,11 @@
                 // test.value = navigator.userAgent
                 console.log("Agent:" + navigator.userAgent)
                 console.log("Agent:" + navigator.userAgent.indexOf("Safari"))
-                // if (navigator.userAgent.match("Safari")) {
-                //     forIosSafari()
-                // } else {
-                    saveAs(blob, "hotcard.gif");
-                    window.location.reload();
+                    // if (navigator.userAgent.match("Safari")) {
+                    //     forIosSafari()
+                    // } else {
+                saveAs(blob, "hotcard.gif");
+                window.location.reload();
                 // }
             });
             gif.render();
@@ -581,7 +582,7 @@
 
         // window.open(URL.createObjectURL(mBlob));
     }
-    gifler('images/base1.gif').frames(canvas, onDrawFrame);
+    gifler('images/new1.gif').frames(canvas, onDrawFrame);
     btn.onclick = () => {
         // console.log("clickTimes:" + clickTimes)
         loadingGif.hidden = false;
