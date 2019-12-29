@@ -121,6 +121,13 @@
         debug: true
 
     });
+    var gif2 = new GIF({
+        workers: 1,
+        quality: 5,
+        repeat: 0,
+        debug: true
+
+    });
     // var img2 = new Image();
     // img2.src = 'images/h03.png';
     var count = 0;
@@ -162,11 +169,11 @@
         //     // delay: 300
         //     // });
 
-        //     // array.push(canvas)
-        //     if (count == 19) {
-        //         ok();
-        //     }
-        // }
+        array.push(canvas)
+        if (count == 19) {
+            ok();
+        }
+
         count++;
         // 或者从canvas的上下文复制像素信息
 
@@ -176,14 +183,16 @@
 
     function ok() {
         console.log(281)
-            // var i = 0;
-            // array.forEach(element => {
-            //     gif.addFrame(element,{delay:70});
-            //     i++;
-            // });
-        gif.addFrame(ctx2, {
-            copy: true
+        var i = 0;
+        array.forEach(element => {
+            gif2.addFrame(element, {
+                delay: 300
+            });
+            i++;
         });
+        // gif.addFrame(ctx2, {
+        //     copy: true
+        // });
         // gif.removeChild()
     }
 
@@ -280,21 +289,22 @@
     //新的gif生成
     function gifFactory() {
         if (mBlob == null) {
-            array.forEach(function(item, index, array) {
-                gif.addFrame(item, {
-                    delay: 300
-                });
-            });
+            // array.forEach(function(item, index, array) {
+            //     gif.addFrame(item, {
+            //         delay: 300
+            //     });
+            // });
 
             // gif.addFrame(ctx2, { copy: true });
-            gif.on('finished', function(blob) {
+            gif2.on('finished', function(blob) {
                 loadingGif.hidden = true;
                 // 这里的blob就是gif图片blod格式信息
                 mBlob = blob;
                 // openURL();
                 // window.location.reload();
                 // test.value = navigator.userAgent
-                console.log("Agent:" + navigator.userAgent)
+
+
                 console.log("Agent:" + navigator.userAgent.indexOf("Safari"))
                     // if (navigator.userAgent.match("Safari")) {
                     //     forIosSafari()
@@ -304,7 +314,7 @@
                 // window.location.reload();
                 // }
             });
-            gif.render();
+            gif2.render();
         } else {
             openURL();
         }

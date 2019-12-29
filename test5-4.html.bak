@@ -1,0 +1,717 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>好車大聯盟~賀圖產生器</title>
+</head>
+<link rel="stylesheet" href="styles.css">
+
+<body>
+    <script src="https://unpkg.com/gifler@0.1.0/gifler.min.js"></script>
+    <script src="gif.js"></script>
+    <script src="GIFEncoder.js"></script>
+    <script src="FileSaver.js"></script>
+    <!-- <script src="Bolb.js"></script> -->
+    <div>
+        <canvas class='cvs' id='test2'></canvas>
+    </div>
+    <div class="inputa" style="margin-top: 20px; padding-left: 20px;">
+        <br>
+
+        <b>
+            請輸入文字
+            <span> <input style="font-size: 30px;font-family: MyHelvetica;" id='name' value="不問歲月任風歌" maxlength="7"
+                    placeholder="車行名稱(最多七字)" /></span>
+        </b>
+
+    </div>
+
+
+    <div style="margin-top: 20px; padding-left:20px;">
+        <b>請選擇文字顏色</b></br>
+        <img class="colorImg" id="img_black" src="images/black_checked.png" />
+        <img class="colorImg" id="img_red" src="images/red_non.png" />
+        <img class="colorImg" id="img_green" src="images/green_light_non.png" />
+        <img class="colorImg" id="img_blue" src="images/blue_light_non.png" />
+        <img class="colorImg" id="img_yellow" src="images/yellow_non.png" />
+        <img class="colorImg" id="img_pink" src="images/pink_non.png" />
+    </div>
+    <div style="margin-top: 20px; padding-left: 20px;  padding-bottom: 20px;" class="special">
+        <b>請選擇字體特效</b></br>
+        <button class="button2" type="button" id="s1">跑馬燈特效</button>
+        <button class="button2" type="button" id="s2">文字放大縮小</button></br>
+        <button class="button2" type="button" id="s3">文字閃爍</button>
+        <button class="button2" type="button" id="s4">文字上下跳</button>
+        <button class="button2" type="button" id="s5">外框特效</button>
+    </div>
+    </br>
+
+
+    <div id="loadingGif" style="padding-top: 20px;padding-bottom: 20px;" hidden="true">
+        <img src="images/ZZ5H.gif" style="width: 100;height: 100;"> 圖片產生中...請稍後
+    </div>
+    <div id="loadingGif" style="padding-top: 20px;padding-bottom: 20px;" hidden="true">
+        <img src="images/ZZ5H.gif" style="width: 100;height: 100;"> 圖片產生中...請稍後
+    </div>
+    <div style="padding-bottom: 50px;">
+        <button id='btn' class="button3" type="button">轉成GIF動態賀圖</button>
+        <button id='reload' class="button3" type="button">重新設定</button>
+    </div>
+    <div id="iosSaver" hidden="true">
+        <b>請使用長按儲存賀圖</b></br>
+        <img id="imgSucessPhoto">
+    </div>
+    <!-- <div> -->
+    <!-- <button class="btn" id='btn'>生成gif</button> -->
+    <!-- <button class="btn" id='reload'>重設</button> -->
+    <!-- </div> -->
+</body>
+
+<script>
+    var img_black = document.getElementById('img_black');
+    var img_red = document.getElementById('img_red');
+    var img_green = document.getElementById('img_green');
+    var img_blue = document.getElementById('img_blue');
+    var img_yellow = document.getElementById('img_yellow');
+    var img_pink = document.getElementById('img_pink');
+    var s1 = document.getElementById('s1');
+    var s2 = document.getElementById('s2');
+    var s3 = document.getElementById('s3');
+    var s4 = document.getElementById('s4');
+    var s5 = document.getElementById('s5');
+    var input = document.getElementById('name');
+    var canvas = document.getElementById('test2');
+    var mode1 = document.getElementById('mode1');
+    var mode2 = document.getElementById('mode2');
+    var mode3 = document.getElementById('mode3');
+    var seMode1 = document.getElementById('seMode1');
+    var seMode2 = document.getElementById('seMode2');
+    var seMode3 = document.getElementById('seMode3');
+    var seMode4 = document.getElementById('seMode4');
+    var seMode5 = document.getElementById('seMode5');
+    var seMode6 = document.getElementById('seMode6');
+
+    var modeCheck1 = false;
+    var modeCheck2 = false;
+    var modeCheck3 = false;
+    var modeCheck4 = false;
+    var modeCheck5 = false;
+
+
+    var loadingGif = document.getElementById('loadingGif');
+    canvas.width = 300;
+    canvas.height = 400;
+    var ctx2 = canvas.getContext('2d');
+    // use external library to parse and draw gif animation
+    var img = new Image();
+    img.src = 'images/bg_name.png';
+    var img2 = new Image();
+    img2.src = 'images/bg_name_small.png'
+    var btn = document.getElementById('btn');
+    var gif = new GIF({
+        workers: 1,
+        quality: 10,
+        repeat: 0,
+
+        debug: true
+
+    });
+    // var img2 = new Image();
+    // img2.src = 'images/h03.png';
+    var count = 0;
+    var time = 0;
+    var dTime = 100;
+    var array = [];
+    var arrayD = [];
+    var fontArraySize = 0;
+    var intFontSize = 70;
+
+    function onDrawFrame(ctx, frame) {
+        if (count > 0) {
+            dTime = (Date.now() - time)
+        }
+
+        time = Date.now();
+        // update canvas size
+        canvas.width = frame.width;
+        canvas.height = frame.height;
+
+        ctx.drawImage(frame.buffer, 0, 0);
+
+        switch (input.value.length) {
+            case 1:
+                ctx.drawImage(img, 262 - 25, 465)
+                ctx.drawImage(img2, 262 + 90, 520)
+                ctx.drawImage(img2, 262 + 60, 520)
+
+                //字型大小
+                ctx.font = "bold " + 30 + "px MyHelvetica";
+                ctx.fillText("敬", 262 + 80, 570)
+                ctx.fillText("賀", 262 + 115, 570)
+                break;
+            case 2:
+                ctx.drawImage(img, 300 - 25, 465)
+                ctx.drawImage(img, 224 - 25, 465)
+                ctx.drawImage(img2, 300 + 90, 520)
+                ctx.drawImage(img2, 300 + 60, 520)
+
+                //字型大小
+                ctx.font = "bold " + 30 + "px MyHelvetica";
+                ctx.fillText("敬", 300 + 80, 570)
+                ctx.fillText("賀", 300 + 115, 570)
+                break;
+            case 3:
+                ctx.drawImage(img, 335 - 25, 465)
+                ctx.drawImage(img, 265 - 25, 465)
+                ctx.drawImage(img, 195 - 25, 465)
+                ctx.drawImage(img2, 335 + 90, 520)
+                ctx.drawImage(img2, 335 + 60, 520)
+
+                //字型大小
+                ctx.font = "bold " + 30 + "px MyHelvetica";
+                ctx.fillText("敬", 335 + 80, 570)
+                ctx.fillText("賀", 335 + 115, 570)
+                break;
+            case 4:
+                ctx.drawImage(img, 366 - 25, 465)
+                ctx.drawImage(img, 300 - 25, 465)
+                ctx.drawImage(img, 234 - 25, 465)
+                ctx.drawImage(img, 168 - 25, 465)
+                ctx.drawImage(img2, 366 + 90, 520)
+                ctx.drawImage(img2, 366 + 60, 520)
+
+                //字型大小
+                ctx.font = "bold " + 30 + "px MyHelvetica";
+                ctx.fillText("敬", 366 + 80, 570)
+                ctx.fillText("賀", 366 + 115, 570)
+                break;
+            case 5:
+                ctx.drawImage(img, 390 - 25, 465)
+                ctx.drawImage(img, 330 - 25, 465)
+                ctx.drawImage(img, 270 - 25, 465)
+                ctx.drawImage(img, 210 - 25, 465)
+                ctx.drawImage(img, 150 - 25, 465)
+                ctx.drawImage(img2, 390 + 80, 520)
+                ctx.drawImage(img2, 390 + 50, 520)
+
+                //字型大小
+                ctx.font = "bold " + 30 + "px MyHelvetica";
+                ctx.fillText("敬", 390 + 70, 570)
+                ctx.fillText("賀", 390 + 100, 570)
+                break;
+            case 6:
+                ctx.drawImage(img, 412 - 25, 465)
+                ctx.drawImage(img, 356 - 25, 465)
+                ctx.drawImage(img, 300 - 25, 465)
+                ctx.drawImage(img, 244 - 25, 465)
+                ctx.drawImage(img, 188 - 25, 465)
+                ctx.drawImage(img, 132 - 25, 465)
+                ctx.drawImage(img2, 412 + 80, 520)
+                ctx.drawImage(img2, 412 + 50, 520)
+
+                //字型大小
+                ctx.font = "bold " + 30 + "px MyHelvetica";
+                ctx.fillText("敬", 412 + 70, 570)
+                ctx.fillText("賀", 412 + 100, 570)
+                break;
+            case 7:
+                ctx.drawImage(img, 430 - 25, 465)
+                ctx.drawImage(img, 378 - 25, 465)
+                ctx.drawImage(img, 326 - 25, 465)
+                ctx.drawImage(img, 274 - 25, 465)
+                ctx.drawImage(img, 222 - 25, 465)
+                ctx.drawImage(img, 170 - 25, 465)
+                ctx.drawImage(img, 118 - 25, 465)
+                ctx.drawImage(img2, 430 + 80, 520)
+                ctx.drawImage(img2, 430 + 50, 520)
+
+                //字型大小
+                ctx.font = "bold " + 30 + "px MyHelvetica";
+                ctx.fillText("敬", 430 + 70, 570)
+                ctx.fillText("賀", 430 + 100, 570)
+                break;
+        }
+
+        //強制轉換字體大小
+        if (input.value.length > 6) {
+            intFontSize = 55;
+        } else if (input.value.length > 5) {
+            intFontSize = 55;
+        } else if (input.value.length > 4) {
+            intFontSize = 60;
+        } else {
+            intFontSize = 70;
+        }
+
+
+        //字型大小
+        ctx.font = "bold " + intFontSize + "px MyHelvetica";
+
+
+        var ss = input.value.split('');
+        fontArraySize = ss.length;
+        if (fontArraySize > 0) {
+            var pos = 0;
+            ss.forEach(element => {
+                //因為看起來文字部分占了2/4
+                var widthBase = frame.width / 4;
+
+                // var FontX = widthBase * 2 / fontArraySize * pos + (fontSize.value * 0.8) + widthBase;
+                var FontX = 0
+                if (ss.length > 6) {
+                    FontX = widthBase + (widthBase * 2 / ss.length * pos) - 40 + (pos * 3);
+                } else if (ss.length > 5) {
+                    FontX = widthBase + (widthBase * 2 / ss.length * pos) - 40 + (pos * 4);
+                } else if (ss.length > 4) {
+                    widthBase = widthBase - 10
+                        // console.log(widthBase + "+" + widthBase + "*2/" + ss.length + "*" + pos);
+                    FontX = widthBase + (widthBase * 2 / ss.length * pos) - 20 + (pos * 7);
+                } else {
+                    FontX = widthBase + (widthBase * 2 / ss.length * pos) - 15
+                }
+                var base = 30;
+                //40 字體大小修正
+                switch (fontArraySize) {
+                    case 1:
+                        base = 38
+                        FontX = canvas.width / 2 - base;
+                        break;
+                    case 2:
+                        base = 38
+                        if (pos == 0) {
+                            FontX = canvas.width / 2 - base * 2;
+                        } else if (pos == 1) {
+                            FontX = canvas.width / 2;
+                        }
+
+                        break;
+                    case 3:
+                        base = 35
+                        if (pos == 0) {
+                            FontX = canvas.width / 2 - base * 3;
+                        } else if (pos == 1) {
+                            FontX = canvas.width / 2 - base;
+                        } else if (pos == 2) {
+                            FontX = canvas.width / 2 + base;
+                        }
+                        break;
+                    case 4:
+                        base = 33
+                        if (pos == 0) {
+                            FontX = canvas.width / 2 - base * 4;
+                        } else if (pos == 1) {
+                            FontX = canvas.width / 2 - base * 2;
+                        } else if (pos == 2) {
+                            FontX = canvas.width / 2;
+                        } else if (pos == 3) {
+                            FontX = canvas.width / 2 + base * 2;
+                        }
+                        break;
+                    case 5:
+                        base = 30
+                        if (pos == 0) {
+                            FontX = canvas.width / 2 - base * 5;
+                        } else if (pos == 1) {
+                            FontX = canvas.width / 2 - base * 3;
+                        } else if (pos == 2) {
+                            FontX = canvas.width / 2 - base;
+                        } else if (pos == 3) {
+                            FontX = canvas.width / 2 + base;
+                        } else if (pos == 4) {
+                            FontX = canvas.width / 2 + base * 3;
+                        }
+                        break;
+                    case 6:
+                        base = 28
+                        if (pos == 0) {
+                            FontX = canvas.width / 2 - base * 6;
+                        } else if (pos == 1) {
+                            FontX = canvas.width / 2 - base * 4;
+                        } else if (pos == 2) {
+                            FontX = canvas.width / 2 - base * 2;
+                        } else if (pos == 3) {
+                            FontX = canvas.width / 2;
+                        } else if (pos == 4) {
+                            FontX = canvas.width / 2 + base * 2;
+                        } else if (pos == 5) {
+                            FontX = canvas.width / 2 + base * 4;
+                        }
+                        break;
+                    case 7:
+                        base = 26
+                        if (pos == 0) {
+                            FontX = canvas.width / 2 - base * 7;
+                        } else if (pos == 1) {
+                            FontX = canvas.width / 2 - base * 5;
+                        } else if (pos == 2) {
+                            FontX = canvas.width / 2 - base * 3;
+                        } else if (pos == 3) {
+                            FontX = canvas.width / 2 - base;
+                        } else if (pos == 4) {
+                            FontX = canvas.width / 2 + base;
+                        } else if (pos == 5) {
+                            FontX = canvas.width / 2 + base * 3;
+                        } else if (pos == 6) {
+                            FontX = canvas.width / 2 + base * 5;
+                        }
+                        break;
+                }
+
+                // console.log(FontX)
+                var FontY = frame.height - 40;
+
+
+
+
+                // if (seMode2.checked) {
+                if (modeCheck2) {
+                    FontResize(ctx, count, pos)
+                }
+
+                // if (mode1.checked || mode3.checked) {
+                // if (seMode1.checked)
+                if (modeCheck1)
+                    HorseRunning(ctx, pos, count)
+                    // else if (seMode3.checked)
+                else if (modeCheck3)
+                    ContentFlicker(ctx, count)
+                    // else if (seMode5.checked) {
+                    // else if (modeCheck4) {
+                    // ALLFlickerFill(ctx, count)
+                    // }
+                else {
+                    // ctx.fillStyle = colorContent.value;
+                    ctx.fillStyle = selectColorCode;
+
+                }
+                if (modeCheck4)
+                    FontJump(ctx, element, FontX, FontY, pos, count)
+                else
+                    ctx.fillText(element, FontX, FontY);
+                // }
+
+                // if (mode2.checked || mode3.checked) {
+
+                ctx.lineWidth = "1";
+                if (modeCheck5)
+                    FrameFlicker(ctx, count)
+                    // else if (seMode5.checked) {
+                    //     ALLFlicker(ctx, count)
+                    // } 
+                else {
+                    // ctx.strokeStyle = colorFrame.value;
+                    ctx.strokeStyle = "white"
+                }
+
+                if (modeCheck4)
+                    FontJumpStroke(ctx, element, FontX, FontY, pos, count)
+                else
+                    ctx.strokeText(element, FontX, FontY);
+                // }
+
+                pos++;
+            });
+
+        }
+
+        if (count <= 11) {
+            //用時間差來取得gif本來的延遲
+            gif.addFrame(canvas, {
+                delay: 300,
+                copy: true
+            });
+            // array.push(canvas)
+            if (count == 11) {
+                ok();
+            }
+        }
+        count++;
+        // 或者从canvas的上下文复制像素信息
+
+    }
+
+    function ok() {
+        console.log(281)
+            // var i = 0;
+            // array.forEach(element => {
+            //     gif.addFrame(element,{delay:70});
+            //     i++;
+            // });
+        gif.addFrame(ctx2, {
+            copy: true
+        });
+        console.log(gif.length)
+            // gif.removeChild()
+    }
+
+    //文字上下動 stroke
+    function FontJumpStroke(ctx, element, FontX, FontY, pos, count) {
+        console.log(FontX, pos, count % 5);
+        var mX = 0;
+        if (count % fontArraySize == pos) {
+            mX = FontY - 60
+        } else {
+            mX = FontY
+        }
+        ctx.strokeText(element, FontX, mX);
+    }
+
+    //文字上下動 fill
+    function FontJump(ctx, element, FontX, FontY, pos, count) {
+        var mX = 0;
+        if (count % fontArraySize == pos) {
+            mX = FontY - 60
+        } else {
+            mX = FontY
+        }
+        ctx.fillText(element, FontX, mX);
+    }
+
+    //內文 + 邊框 閃爍
+    function ALLFlickerFill(ctx, count) {
+        if (count % 2 == 0) {
+            ctx.fillStyle = "yellow";
+
+        } else {
+            ctx.fillStyle = "black";
+
+        }
+    }
+    //內文 + 邊框 閃爍
+    function ALLFlicker(ctx, count) {
+        if (count % 2 == 0) {
+            ctx.strokeStyle = "yellow";
+        } else {
+            ctx.strokeStyle = "black";
+        }
+    }
+
+    //內文閃爍
+    function ContentFlicker(ctx, count) {
+        if (count % 2 == 0) {
+            ctx.fillStyle = "yellow";
+        } else {
+            ctx.fillStyle = "black";
+        }
+    }
+
+    //邊框閃爍
+    function FrameFlicker(ctx, count) {
+        if (count % 2 == 0) {
+            ctx.strokeStyle = "red";
+        } else {
+            ctx.strokeStyle = "white";
+        }
+    }
+
+    //閃爍
+    function Flicker(ctx, count) {
+        if (count % 2 == 0) {
+            ctx.fillStyle = "rgb(122,169,42)";
+        } else {
+            ctx.fillStyle = "rgb(255,255,255)";
+        }
+    }
+
+    //文字放大縮小
+    function FontResize(ctx, count, pos) {
+        if (count % fontArraySize == pos) {
+            ctx.font = "bold " + (intFontSize + 30) + "px serif";
+        } else {
+            ctx.font = "bold " + intFontSize + "px serif";
+        }
+
+    }
+
+    var horseColor = ['red', 'orange', 'yellow', 'green', 'blue', '#4b0080', 'purple']
+        //人生跑馬燈
+    function HorseRunning(ctx, pos, count) {
+        ctx.fillStyle = horseColor[Math.abs((count % fontArraySize) - pos)];
+    }
+
+
+
+    var mBlob = null;
+
+
+    //新的gif生成
+    function gifFactory() {
+        if (mBlob == null) {
+
+            // gif.addFrame(ctx2, { copy: true });
+            gif.on('finished', function(blob) {
+                loadingGif.hidden = true;
+                // 这里的blob就是gif图片blod格式信息
+                mBlob = blob;
+                // openURL();
+                // window.location.reload();
+                // test.value = navigator.userAgent
+                console.log("Agent:" + navigator.userAgent)
+                console.log("Agent:" + navigator.userAgent.indexOf("Safari"))
+                    // if (navigator.userAgent.match("Safari")) {
+                    //     forIosSafari()
+                    // } else {
+                saveAs(blob, "hotcard.gif");
+                window.location.reload();
+                // }
+            });
+            gif.render();
+        } else {
+            openURL();
+        }
+    }
+
+    function forIosSafari() {
+        iosSaver.hidden = false
+        var file = new File([blob], "name.gif");
+        var gif = new gif(file)
+        imgSucessPhoto.src = URL.createObjectURL(file);
+    }
+
+    //共用
+    function openURL() {
+        //下载动作
+        var el = document.createElement('a');
+        el.href = URL.createObjectURL(mBlob);
+        el.download = input.value; //设置下载文件名称
+        document.body.appendChild(el);
+        var evt = document.createEvent("MouseEvents");
+        evt.initEvent("click", false, false);
+        el.dispatchEvent(evt);
+        document.body.removeChild(el);
+
+        // window.open(URL.createObjectURL(mBlob));
+    }
+    gifler('images/happy_new_year1.gif').frames(canvas, onDrawFrame);
+    btn.onclick = () => {
+        // console.log("clickTimes:" + clickTimes)
+        loadingGif.hidden = false;
+        gifFactory();
+    }
+    reload.onclick = () => {
+        window.location.reload();
+    }
+
+    var selectColor = "black"
+    var selectColorCode = "#000000"
+    img_black.onclick = () => {
+        colorCheck()
+        img_black.src = "images/black_checked.png"
+        selectColor = "black"
+        selectColorCode = "#000000"
+    }
+
+    img_red.onclick = () => {
+        colorCheck()
+        img_red.src = "images/red_checked.png"
+        selectColor = "red"
+        selectColorCode = "#961417"
+        brown
+    }
+
+    img_green.onclick = () => {
+        colorCheck()
+        img_green.src = "images/green_light_checked.png"
+        selectColor = "green"
+        selectColorCode = "#66ec61"
+    }
+
+    img_blue.onclick = () => {
+        colorCheck()
+        img_blue.src = "images/blue_light_checked.png"
+        selectColor = "blue"
+        selectColorCode = "#57f2f2"
+    }
+
+    img_yellow.onclick = () => {
+        colorCheck()
+        img_yellow.src = "images/yellow_checked.png"
+        selectColor = "yellow"
+        selectColorCode = "#f6b001"
+    }
+
+    img_pink.onclick = () => {
+        colorCheck()
+        img_pink.src = "images/pink_checked.png"
+        selectColor = "pink"
+        selectColorCode = "#ee6b7a"
+    }
+
+    function colorCheck() {
+        console.log(selectColor)
+        if (selectColor == "black")
+            img_black.src = "images/black_non.png"
+        else if (selectColor == "blue") {
+            img_blue.src = "images/blue_light_non.png"
+        } else if (selectColor == "green") {
+            img_green.src = "images/green_light_non.png"
+        } else if (selectColor == "red") {
+            img_red.src = "images/red_non.png"
+        } else if (selectColor == "yellow") {
+            img_yellow.src = "images/yellow_non.png"
+        } else if (selectColor == "pink") {
+            img_pink.src = "images/pink_non.png"
+        }
+    }
+
+    s1.onclick = () => {
+        console.log("點我1")
+        if (modeCheck1) {
+            s1.style.backgroundColor = "#d6d2ba"
+            s1.style.color = "black"
+        } else {
+            s1.style.backgroundColor = "black"
+            s1.style.color = "white"
+        }
+
+        modeCheck1 = !modeCheck1
+    }
+    s2.onclick = () => {
+        if (modeCheck2) {
+            s2.style.backgroundColor = "#d6d2ba"
+            s2.style.color = "black"
+        } else {
+            s2.style.backgroundColor = "black"
+            s2.style.color = "white"
+        }
+        modeCheck2 = !modeCheck2
+        console.log("點我2")
+
+    }
+    s3.onclick = () => {
+        if (modeCheck3) {
+            s3.style.backgroundColor = "#d6d2ba"
+            s3.style.color = "black"
+        } else {
+            s3.style.backgroundColor = "black"
+            s3.style.color = "white"
+        }
+        modeCheck3 = !modeCheck3
+        console.log("點我3")
+
+    }
+    s4.onclick = () => {
+        if (modeCheck4) {
+            s4.style.backgroundColor = "#d6d2ba"
+            s4.style.color = "black"
+        } else {
+            s4.style.backgroundColor = "black"
+            s4.style.color = "white"
+        }
+        console.log("點我4")
+        modeCheck4 = !modeCheck4
+    }
+    s5.onclick = () => {
+        if (modeCheck5) {
+            s5.style.backgroundColor = "#d6d2ba"
+            s5.style.color = "black"
+        } else {
+            s5.style.backgroundColor = "black"
+            s5.style.color = "white"
+        }
+        console.log("點我5")
+        modeCheck5 = !modeCheck5
+    }
+</script>
+
+</html>

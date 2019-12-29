@@ -6,7 +6,7 @@
 </head>
 <link rel="stylesheet" href="styles.css">
 
-<body>
+<body align="center" style="margin-top: 50px;">
     <script src="https://unpkg.com/gifler@0.1.0/gifler.min.js"></script>
     <script src="gif.js"></script>
     <script src="GIFEncoder.js"></script>
@@ -15,11 +15,12 @@
     <div>
         <canvas class='cvs' id='test2'></canvas>
     </div>
-    <div class="inputa" style="margin-top: 20px; padding-left: 20px;">
+    <div class="inputa" style="margin-top: 20px; padding-left: 20px;align-content: center;">
         <br>
 
         <b>
-            請輸入文字
+            請輸入名稱
+            <br>
             <span> <input style="font-size: 30px;font-family: MyHelvetica;" id='name' value="不問歲月任風歌" maxlength="7"
                     placeholder="車行名稱(最多七字)" /></span>
         </b>
@@ -414,13 +415,14 @@
 
         }
 
-        if (count <= 11) {
+        if (count <= 19) {
             //用時間差來取得gif本來的延遲
             gif.addFrame(canvas, {
-                delay: 300
+                delay: 300,
+                copy: true
             });
             // array.push(canvas)
-            if (count == 11) {
+            if (count == 19) {
                 ok();
             }
         }
