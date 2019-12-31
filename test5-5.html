@@ -673,81 +673,82 @@
     img_black.onclick = () => {
         colorCheck()
             // img_black.src = "images/black_checked.png"
-        selectColor = "black"
-        colorType(selectColor)
-        Session.set("color", selectColor)
-        selectColorCode = "#000000"
+        colorType("black")
+
+    
     }
 
     img_red.onclick = () => {
         colorCheck()
             // img_red.src = "images/red_checked.png"
-        selectColor = "red"
-        colorType(selectColor)
-        Session.set("color", selectColor)
-        selectColorCode = "#961417"
-        brown
+        colorType("red")
+
     }
 
     img_green.onclick = () => {
         colorCheck()
             // img_green.src = "images/green_light_checked.png"
-        selectColor = "green"
-        colorType(selectColor)
-        Session.set("color", selectColor)
-        selectColorCode = "#66ec61"
+        colorType("green")
     }
 
     img_blue.onclick = () => {
         colorCheck()
             // img_blue.src = "images/blue_light_checked.png"
-        selectColor = "blue"
-        colorType(selectColor)
-        Session.set("color", selectColor)
-        selectColorCode = "#57f2f2"
+
+        colorType("blue")
     }
 
     img_yellow.onclick = () => {
         colorCheck()
             // img_yellow.src = "images/yellow_checked.png"
-        selectColor = "yellow"
-        colorType(selectColor)
-        Session.set("color", selectColor)
-        selectColorCode = "#f6b001"
+        colorType("yellow")
+ 
     }
 
     img_pink.onclick = () => {
         colorCheck()
             // img_pink.src = "images/pink_checked.png"
-        selectColor = "pink"
-        colorType(selectColor)
-        Session.set("color", selectColor)
-        selectColorCode = "#ee6b7a"
+        colorType("pink")
+       
+  
     }
 
+    function textColorChange(){
+
+    }
+
+    //新的已選取
     function colorType(color) {
+        selectColor = color
+        Session.set("color", selectColor)
         switch (color) {
             case "black":
                 img_black.src = "images/black_checked.png"
+                selectColorCode = "#000000"
                 break;
             case "red":
                 img_red.src = "images/red_checked.png"
+                selectColorCode = "#961417"
                 break;
             case "green":
                 img_green.src = "images/green_light_checked.png"
+                selectColorCode = "#66ec61"
                 break;
             case "blue":
                 img_blue.src = "images/blue_light_checked.png"
+                selectColorCode = "#57f2f2"
                 break;
             case "yellow":
                 img_yellow.src = "images/yellow_checked.png"
+                selectColorCode = "#f6b001"
                 break;
             case "pink":
                 img_pink.src = "images/pink_checked.png"
+                selectColorCode = "#ee6b7a"
                 break;
         }
     }
-
+    //把已選取 取消
     function colorCheck() {
         console.log(selectColor)
         if (selectColor == "black")
