@@ -31,7 +31,7 @@
 
     <div style="margin-top: 20px; padding-left:20px;">
         <b>請選擇文字顏色</b></br>
-        <img class="colorImg" id="img_black" src="images/black_checked.png" />
+        <img class="colorImg" id="img_black" src="images/black_non.png" />
         <img class="colorImg" id="img_red" src="images/red_non.png" />
         <img class="colorImg" id="img_green" src="images/green_light_non.png" />
         <img class="colorImg" id="img_blue" src="images/blue_light_non.png" />
@@ -98,7 +98,7 @@
     var modeCheck3 = false;
     var modeCheck4 = false;
     var modeCheck5 = false;
-    console.log(Session.get("s1"))
+    console.log("s1:" + Session.get("s1"))
     console.log(Session.get("s2"))
     console.log(Session.get("s3"))
     console.log(Session.get("s4"))
@@ -113,14 +113,45 @@
         modeCheck4 = Session.get("s4");
     if (Session.get("s5") != null)
         modeCheck5 = Session.get("s5");
+    console.log("117 Boolean:" + Session.get("s1"))
+    console.log("117 modeCheck1:" + modeCheck1)
+    if (new Boolean(modeCheck1)) {
+        console.log("119 modeCheck1:")
+    } else {
+        console.log("121 modeCheck1:")
+    }
 
-    console.log(modeCheck1)
+    if (modeCheck1 == "true") {
+        console.log("125 modeCheck1:")
+    } else {
+        console.log("127 modeCheck1:")
+    }
+
+    if (modeCheck1 == 'true') {
+        console.log("131 modeCheck1:")
+    } else {
+        console.log("133 modeCheck1:")
+    }
     console.log(modeCheck2)
     console.log(modeCheck3)
     console.log(modeCheck4)
     console.log(modeCheck5)
 
     CheckSpicalStyleAll()
+
+
+    var selectColor = "black"
+    var selectColorCode = "#000000"
+    if (Session.get("color") != null)
+        selectColor = Session.get("color");
+    console.log("selectColor:" + selectColor)
+    if (Session.get("colorCode") != null)
+        selectColorCode = Session.get("colorCode");
+
+    colorCheck()
+        // img_red.src = "images/red_checked.png"
+    colorType(selectColor)
+    console.log("selectColorCode:" + selectColorCode)
     var loadingGif = document.getElementById('loadingGif');
     canvas.width = 300;
     canvas.height = 400;
@@ -575,7 +606,7 @@
         gifFactory();
     }
     reload.onclick = () => {
-        Session.clear();
+        // Session.clear();
         window.location.reload();
 
     }
@@ -668,14 +699,12 @@
 
 
 
-    var selectColor = "black"
-    var selectColorCode = "#000000"
     img_black.onclick = () => {
         colorCheck()
             // img_black.src = "images/black_checked.png"
         colorType("black")
 
-    
+
     }
 
     img_red.onclick = () => {
@@ -702,18 +731,18 @@
         colorCheck()
             // img_yellow.src = "images/yellow_checked.png"
         colorType("yellow")
- 
+
     }
 
     img_pink.onclick = () => {
         colorCheck()
             // img_pink.src = "images/pink_checked.png"
         colorType("pink")
-       
-  
+
+
     }
 
-    function textColorChange(){
+    function textColorChange() {
 
     }
 
@@ -725,6 +754,7 @@
             case "black":
                 img_black.src = "images/black_checked.png"
                 selectColorCode = "#000000"
+
                 break;
             case "red":
                 img_red.src = "images/red_checked.png"
@@ -747,6 +777,7 @@
                 selectColorCode = "#ee6b7a"
                 break;
         }
+        Session.set("colorCode", selectColorCode)
     }
     //把已選取 取消
     function colorCheck() {
@@ -770,6 +801,7 @@
         console.log("點我1")
         modeCheck1 = !modeCheck1
         Session.set("s1", "" + modeCheck1)
+        console.log("s1:" + Session.get("s1"))
         CheckSpicalStyle(1)
     }
     s2.onclick = () => {
@@ -808,11 +840,14 @@
     function CheckSpicalStyle(type) {
         switch (type) {
             case 1:
-                if (modeCheck1) {
+                console.log("modeCheck1:" + modeCheck1)
+                if (modeCheck1 || modeCheck1 == "true") {
+                    console.log("828:")
                     s1.style.backgroundColor = "black"
                     s1.style.color = "white"
 
                 } else {
+                    console.log("833:")
                     s1.style.backgroundColor = "#d6d2ba"
                     s1.style.color = "black"
                 }
