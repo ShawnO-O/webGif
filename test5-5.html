@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="styles.css">
 
 <body align="center" style="margin-top: 50px;">
-    <script src="https://unpkg.com/gifler@0.1.0/gifler.min.js"></script>
+    <script src="gifler.js"></script>
     <script src="gif.js"></script>
     <script src="GIFEncoder.js"></script>
     <script src="FileSaver.js"></script>
@@ -16,7 +16,7 @@
     <div>
         <canvas class='cvs' id='test2'></canvas>
     </div>
-    <div class="inputa" style="margin-top: 20px; padding-left: 20px;align-content: center;">
+    <div class="inputa" style="margin-top: 20px; padding-left: 20px;align-content: center;" oninput="onInput()">
         <br>
 
         <b>
@@ -93,49 +93,55 @@
     var seMode5 = document.getElementById('seMode5');
     var seMode6 = document.getElementById('seMode6');
 
-    var modeCheck1 = false;
-    var modeCheck2 = false;
-    var modeCheck3 = false;
-    var modeCheck4 = false;
-    var modeCheck5 = false;
+    var modeCheck1 = "false";
+    var modeCheck2 = "false";
+    var modeCheck3 = "false";
+    var modeCheck4 = "false";
+    var modeCheck5 = "false";
     console.log("s1:" + Session.get("s1"))
     console.log(Session.get("s2"))
     console.log(Session.get("s3"))
     console.log(Session.get("s4"))
     console.log(Session.get("s5"))
-    if (Session.get("s1") != null)
-        modeCheck1 = Session.get("s1");
-    if (Session.get("s2") != null)
-        modeCheck2 = Session.get("s2");
-    if (Session.get("s3") != null)
-        modeCheck3 = Session.get("s3");
-    if (Session.get("s4") != null)
-        modeCheck4 = Session.get("s4");
-    if (Session.get("s5") != null)
-        modeCheck5 = Session.get("s5");
-    console.log("117 Boolean:" + Session.get("s1"))
-    console.log("117 modeCheck1:" + modeCheck1)
-    if (new Boolean(modeCheck1)) {
-        console.log("119 modeCheck1:")
-    } else {
-        console.log("121 modeCheck1:")
+    if (Session.get("s1") != null){
+        // modeCheck1 = Session.get("s1");
+        if(Session.get("s1") == "1"){
+            modeCheck1 = true;
+        }else{
+            modeCheck1 = false;
+        }
     }
-
-    if (modeCheck1 == "true") {
-        console.log("125 modeCheck1:")
-    } else {
-        console.log("127 modeCheck1:")
-    }
-
-    if (modeCheck1 == 'true') {
-        console.log("131 modeCheck1:")
-    } else {
-        console.log("133 modeCheck1:")
-    }
-    console.log(modeCheck2)
-    console.log(modeCheck3)
-    console.log(modeCheck4)
-    console.log(modeCheck5)
+    if (Session.get("s2") != null){ 
+        if(Session.get("s2") == "1"){
+            modeCheck2 = true;
+        }else{
+            modeCheck2 = false;
+        }
+        }
+        // modeCheck2 = Session.get("s2");
+    if (Session.get("s3") != null){ 
+        if(Session.get("s3") == "1"){
+            modeCheck3 = true;
+        }else{
+            modeCheck3 = false;
+        }
+        }
+        // modeCheck3 = Session.get("s3");
+    if (Session.get("s4") != null){
+         if(Session.get("s4") == "1"){
+            modeCheck4 = true;
+        }else{
+            modeCheck4 = false;
+        }
+        }
+        // modeCheck4 = Session.get("s4");
+    if (Session.get("s5") != null){
+         if(Session.get("s5") == "1"){
+            modeCheck5 = true;
+        }else{
+            modeCheck5 = false;
+        }
+        }
 
     CheckSpicalStyleAll()
 
@@ -182,6 +188,11 @@
     var arrayD = [];
     var fontArraySize = 0;
     var intFontSize = 55;
+
+    function onInput(){
+        console.log(input.value);
+        Session.set("name",input.value);
+    }
 
     function onDrawFrame(ctx, frame) {
         if (count > 0) {
@@ -599,16 +610,19 @@
 
         // window.open(URL.createObjectURL(mBlob));
     }
-    gifler('images/happy_new_year_vip1.gif').frames(canvas, onDrawFrame);
+    var gifler = gifler('images/happy_new_year_normal_20200101.gif');
+    gifler.frames(canvas, onDrawFrame);
     btn.onclick = () => {
         // console.log("clickTimes:" + clickTimes)
         loadingGif.hidden = false;
         gifFactory();
     }
     reload.onclick = () => {
-        // Session.clear();
+        Session.clear();
         window.location.reload();
-
+        // gifler.get().stop();
+        // .reset();
+        
     }
 
 
@@ -703,7 +717,7 @@
         colorCheck()
             // img_black.src = "images/black_checked.png"
         colorType("black")
-
+        window.location.reload();
 
     }
 
@@ -711,13 +725,14 @@
         colorCheck()
             // img_red.src = "images/red_checked.png"
         colorType("red")
-
+        window.location.reload();
     }
 
     img_green.onclick = () => {
         colorCheck()
             // img_green.src = "images/green_light_checked.png"
         colorType("green")
+        window.location.reload();
     }
 
     img_blue.onclick = () => {
@@ -725,12 +740,14 @@
             // img_blue.src = "images/blue_light_checked.png"
 
         colorType("blue")
+        window.location.reload();
     }
 
     img_yellow.onclick = () => {
         colorCheck()
             // img_yellow.src = "images/yellow_checked.png"
         colorType("yellow")
+        window.location.reload();
 
     }
 
@@ -738,7 +755,7 @@
         colorCheck()
             // img_pink.src = "images/pink_checked.png"
         colorType("pink")
-
+        window.location.reload();
 
     }
 
@@ -799,34 +816,74 @@
 
     s1.onclick = () => {
         console.log("點我1")
-        modeCheck1 = !modeCheck1
-        Session.set("s1", "" + modeCheck1)
+        if(modeCheck1){
+            modeCheck1 = false;
+            Session.set("s1", "0")
+        }else{
+            modeCheck1 = true;
+            Session.set("s1", "1")
+        }
+        // modeCheck1 = !modeCheck1
+        window.location.reload();
         console.log("s1:" + Session.get("s1"))
-        CheckSpicalStyle(1)
+        // CheckSpicalStyle(1)
+
     }
     s2.onclick = () => {
-        modeCheck2 = !modeCheck2
-        Session.set("s2", "" + modeCheck2)
+        if(modeCheck2 ){
+            modeCheck2 = false;
+            Session.set("s2", "0")
+        }else{
+            modeCheck2 = true;
+            Session.set("s2", "1")
+        }
+        window.location.reload();
+        // modeCheck2 = !modeCheck2
+     
         console.log("點我2")
-        CheckSpicalStyle(2)
+        // CheckSpicalStyle(2)
     }
     s3.onclick = () => {
-        modeCheck3 = !modeCheck3
-        Session.set("s3", "" + modeCheck3)
+        if(modeCheck3 ){
+            modeCheck3 = false;
+            Session.set("s3", "" + "0")
+        }else{
+            modeCheck3 = true;
+            Session.set("s3", "" + "1")
+        }
+        // modeCheck3 = !modeCheck3
+        // Session.set("s3", "" + modeCheck3)
+        window.location.reload();
         console.log("點我3")
-        CheckSpicalStyle(3)
+        // CheckSpicalStyle(3)
     }
     s4.onclick = () => {
+        if(modeCheck4){
+            modeCheck4 = false;
+            Session.set("s4", "" + "0")
+        }else{
+            modeCheck4 = true;
+            Session.set("s4", "" + "1")
+        }
         console.log("點我4")
-        modeCheck4 = !modeCheck4
-        Session.set("s4", "" + modeCheck4)
-        CheckSpicalStyle(4)
+        window.location.reload();
+        // modeCheck4 = !modeCheck4
+        // Session.set("s4", "" + modeCheck4)
+        // CheckSpicalStyle(4)
     }
     s5.onclick = () => {
+        if(modeCheck5){
+            modeCheck5 = false;
+            Session.set("s5", "0" )
+        }else{
+            modeCheck5 = true;
+            Session.set("s5", "1" )
+        }
         console.log("點我5")
-        modeCheck5 = !modeCheck5
-        Session.set("s5", "" + modeCheck5)
-        CheckSpicalStyle(5)
+        window.location.reload();
+        // modeCheck5 = !modeCheck5
+        // Session.set("s5", "" + modeCheck5)
+        // CheckSpicalStyle(5)
     }
 
     function CheckSpicalStyleAll() {
@@ -841,7 +898,7 @@
         switch (type) {
             case 1:
                 console.log("modeCheck1:" + modeCheck1)
-                if (modeCheck1 || modeCheck1 == "true") {
+                if (modeCheck1) {
                     console.log("828:")
                     s1.style.backgroundColor = "black"
                     s1.style.color = "white"
