@@ -93,7 +93,6 @@
     var seMode5 = document.getElementById('seMode5');
     var seMode6 = document.getElementById('seMode6');
 
-  
     var modeCheck1 = false;
     var modeCheck2 = false;
     var modeCheck3 = false;
@@ -496,7 +495,7 @@
 
         }
         // console.log("count:" + count % 12)
-        if (count < 10) {
+        if (count < 7) {
             // //用時間差來取得gif本來的延遲
             // if (count == 9) {
             //     gif.addFrame(canvas, {
@@ -616,7 +615,7 @@
 
         // window.open(URL.createObjectURL(mBlob));
     }
-    var gifler = gifler('images/happy_new_year_normal_20200101.gif');
+    var gifler = gifler('images/happy_new_year_normal2_20200101.gif');
     gifler.frames(canvas, onDrawFrame);
     btn.onclick = () => {
         // console.log("clickTimes:" + clickTimes)

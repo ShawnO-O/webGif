@@ -217,9 +217,9 @@
         var background_point_y = frame.height - 115;
         var background_point_small_y = frame.height - 60;
         console.log(count +":"+count %+9)
-        // if (count % 10 > 4) {
-        //     ctx.drawImage(img3, 0, 0)
-        // }
+        if (count % 10 > 4) {
+            ctx.drawImage(img3, 0, 0)
+        }
         switch (input.value.length) {
             case 1:
                 ctx.drawImage(img, 262 - 25 + 100, background_point_y)
@@ -616,7 +616,7 @@
 
         // window.open(URL.createObjectURL(mBlob));
     }
-    var gifler = gifler('images/happy_new_year_normal_20200101.gif');
+    var gifler = gifler('images/happy_new_year_vip_20200101.gif');
     gifler.frames(canvas, onDrawFrame);
     btn.onclick = () => {
         // console.log("clickTimes:" + clickTimes)
