@@ -14,7 +14,7 @@
     <script src="session.js"></script>
     <!-- <script src="Bolb.js"></script> -->
     <div>
-        <canvas class='cvs' id='test2'></canvas>
+        <canvas hidden=true class='cvs' id='test2'></canvas>
     </div>
     <div class="inputa" style="margin-top: 20px; padding-left: 20px;align-content: center;" oninput="onInput()">
         <br>
@@ -92,7 +92,6 @@
     var seMode4 = document.getElementById('seMode4');
     var seMode5 = document.getElementById('seMode5');
     var seMode6 = document.getElementById('seMode6');
-
 
     var modeCheck1 = false;
     var modeCheck2 = false;
@@ -201,6 +200,7 @@
     }
 
     function onDrawFrame(ctx, frame) {
+        console.log(count)
         if (count > 0) {
             dTime = (Date.now() - time)
         }
@@ -216,10 +216,10 @@
         ctx.drawImage(frame.buffer, 0, 0);
         var background_point_y = frame.height - 115;
         var background_point_small_y = frame.height - 60;
-        console.log(count + ":" + count % +9)
-            // if (count % 10 > 4) {
-            //     ctx.drawImage(img3, 0, 0)
-            // }
+        // console.log(count + ":" + count % +9)
+        // if (count % 10 > 4) {
+        //     ctx.drawImage(img3, 0, 0)
+        // }
         switch (input.value.length) {
             case 1:
                 ctx.drawImage(img, 262 - 25 + 100, background_point_y)
@@ -496,7 +496,7 @@
 
         }
         // console.log("count:" + count % 12)
-        if (count < 10) {
+        if (count < 7) {
             // //用時間差來取得gif本來的延遲
             // if (count == 9) {
             //     gif.addFrame(canvas, {
@@ -577,9 +577,10 @@
                 loadingGif.hidden = true;
                 // 这里的blob就是gif图片blod格式信息
                 mBlob = blob;
-                openURL();
+                // openURL();
                 // window.location.reload();
                 // test.value = navigator.userAgent
+                window.open("https://www.w3schools.com");
                 console.log("Agent:" + navigator.userAgent)
                 console.log("Agent:" + navigator.userAgent.indexOf("Safari"))
                     // if (navigator.userAgent.match("Safari")) {
@@ -597,9 +598,17 @@
 
     function forIosSafari() {
         iosSaver.hidden = false
-        var file = new File([blob], "name.gif");
-        var gif = new gif(file)
-        imgSucessPhoto.src = URL.createObjectURL(file);
+            // var file = new File([mBlob], "name.gif");
+            // 
+            // imgSucessPhoto.src = URL.createObjectURL(mBlob);
+        var reader = new FileReader();
+        reader.readAsDataURL(mBlob);
+        reader.onloadend = function() {
+            // imgSucessPhoto.src = reader.result;
+            var gif = new gif(reader.result)
+            imgSucessPhoto.src = gif
+            console.log(reader.result);
+        }
     }
 
     //共用
@@ -616,7 +625,7 @@
 
         // window.open(URL.createObjectURL(mBlob));
     }
-    var gifler = gifler('images/happy_new_year_normal_20200101.gif');
+    var gifler = gifler('images/happy_new_year_normal2_20200101.gif');
     gifler.frames(canvas, onDrawFrame);
     btn.onclick = () => {
         // console.log("clickTimes:" + clickTimes)

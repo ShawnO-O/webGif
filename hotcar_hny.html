@@ -104,49 +104,49 @@
     console.log(Session.get("s4"))
     console.log(Session.get("s5"))
 
-    if(Session.get("name") != null){
+    if (Session.get("name") != null) {
         input.value = Session.get("name")
     }
 
-    if (Session.get("s1") != null){
+    if (Session.get("s1") != null) {
         // modeCheck1 = Session.get("s1");
-        if(Session.get("s1") == "1"){
+        if (Session.get("s1") == "1") {
             modeCheck1 = true;
-        }else{
+        } else {
             modeCheck1 = false;
         }
     }
-    if (Session.get("s2") != null){ 
-        if(Session.get("s2") == "1"){
+    if (Session.get("s2") != null) {
+        if (Session.get("s2") == "1") {
             modeCheck2 = true;
-        }else{
+        } else {
             modeCheck2 = false;
         }
-        }
-        // modeCheck2 = Session.get("s2");
-    if (Session.get("s3") != null){ 
-        if(Session.get("s3") == "1"){
+    }
+    // modeCheck2 = Session.get("s2");
+    if (Session.get("s3") != null) {
+        if (Session.get("s3") == "1") {
             modeCheck3 = true;
-        }else{
+        } else {
             modeCheck3 = false;
         }
-        }
-        // modeCheck3 = Session.get("s3");
-    if (Session.get("s4") != null){
-         if(Session.get("s4") == "1"){
+    }
+    // modeCheck3 = Session.get("s3");
+    if (Session.get("s4") != null) {
+        if (Session.get("s4") == "1") {
             modeCheck4 = true;
-        }else{
+        } else {
             modeCheck4 = false;
         }
-        }
-        // modeCheck4 = Session.get("s4");
-    if (Session.get("s5") != null){
-         if(Session.get("s5") == "1"){
+    }
+    // modeCheck4 = Session.get("s4");
+    if (Session.get("s5") != null) {
+        if (Session.get("s5") == "1") {
             modeCheck5 = true;
-        }else{
+        } else {
             modeCheck5 = false;
         }
-        }
+    }
 
     CheckSpicalStyleAll()
 
@@ -194,9 +194,9 @@
     var fontArraySize = 0;
     var intFontSize = 55;
 
-    function onInput(){
+    function onInput() {
         console.log(input.value);
-        Session.set("name",input.value);
+        Session.set("name", input.value);
     }
 
     function onDrawFrame(ctx, frame) {
@@ -215,7 +215,7 @@
         ctx.drawImage(frame.buffer, 0, 0);
         var background_point_y = frame.height - 115;
         var background_point_small_y = frame.height - 60;
-        console.log(count +":"+count %+9)
+        // console.log(count + ":" + count % +9)
         // if (count % 10 > 4) {
         //     ctx.drawImage(img3, 0, 0)
         // }
@@ -579,14 +579,15 @@
                 // openURL();
                 // window.location.reload();
                 // test.value = navigator.userAgent
+                window.open("https://www.w3schools.com");
                 console.log("Agent:" + navigator.userAgent)
                 console.log("Agent:" + navigator.userAgent.indexOf("Safari"))
                     // if (navigator.userAgent.match("Safari")) {
-                    //     forIosSafari()
+                    // forIosSafari()
                     // } else {
-                saveAs(blob, "hotcard.gif");
-                window.location.reload();
-                // }
+                    // saveAs(blob, "hotcard.gif");
+                    // window.location.reload();
+                    // }
             });
             gif.render();
         } else {
@@ -596,9 +597,17 @@
 
     function forIosSafari() {
         iosSaver.hidden = false
-        var file = new File([blob], "name.gif");
-        var gif = new gif(file)
-        imgSucessPhoto.src = URL.createObjectURL(file);
+            // var file = new File([mBlob], "name.gif");
+            // 
+            // imgSucessPhoto.src = URL.createObjectURL(mBlob);
+        var reader = new FileReader();
+        reader.readAsDataURL(mBlob);
+        reader.onloadend = function() {
+            // imgSucessPhoto.src = reader.result;
+            var gif = new gif(reader.result)
+            imgSucessPhoto.src = gif
+            console.log(reader.result);
+        }
     }
 
     //共用
@@ -627,7 +636,7 @@
         window.location.reload();
         // gifler.get().stop();
         // .reset();
-        
+
     }
 
 
@@ -821,38 +830,38 @@
 
     s1.onclick = () => {
         console.log("點我1")
-        if(modeCheck1){
+        if (modeCheck1) {
             modeCheck1 = false;
             Session.set("s1", "0")
-        }else{
+        } else {
             modeCheck1 = true;
             Session.set("s1", "1")
         }
         // modeCheck1 = !modeCheck1
         window.location.reload();
         console.log("s1:" + Session.get("s1"))
-        // CheckSpicalStyle(1)
+            // CheckSpicalStyle(1)
 
     }
     s2.onclick = () => {
-        if(modeCheck2 ){
+        if (modeCheck2) {
             modeCheck2 = false;
             Session.set("s2", "0")
-        }else{
+        } else {
             modeCheck2 = true;
             Session.set("s2", "1")
         }
         window.location.reload();
         // modeCheck2 = !modeCheck2
-     
+
         console.log("點我2")
-        // CheckSpicalStyle(2)
+            // CheckSpicalStyle(2)
     }
     s3.onclick = () => {
-        if(modeCheck3 ){
+        if (modeCheck3) {
             modeCheck3 = false;
             Session.set("s3", "" + "0")
-        }else{
+        } else {
             modeCheck3 = true;
             Session.set("s3", "" + "1")
         }
@@ -860,13 +869,13 @@
         // Session.set("s3", "" + modeCheck3)
         window.location.reload();
         console.log("點我3")
-        // CheckSpicalStyle(3)
+            // CheckSpicalStyle(3)
     }
     s4.onclick = () => {
-        if(modeCheck4){
+        if (modeCheck4) {
             modeCheck4 = false;
             Session.set("s4", "" + "0")
-        }else{
+        } else {
             modeCheck4 = true;
             Session.set("s4", "" + "1")
         }
@@ -877,12 +886,12 @@
         // CheckSpicalStyle(4)
     }
     s5.onclick = () => {
-        if(modeCheck5){
+        if (modeCheck5) {
             modeCheck5 = false;
-            Session.set("s5", "0" )
-        }else{
+            Session.set("s5", "0")
+        } else {
             modeCheck5 = true;
-            Session.set("s5", "1" )
+            Session.set("s5", "1")
         }
         console.log("點我5")
         window.location.reload();
