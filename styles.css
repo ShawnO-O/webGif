@@ -5,7 +5,8 @@ body {
     background-image: url('images/bg.png');
     font-size: 25px;
     background-size: cover;
-    font-family: MyHelvetica;
+    /* font-family: MyHelvetica; */
+    font-family: Microsoft JhengHei;
     /* background-image: images/bg_1; */
     /* background-image: url('images/bg_1.jpg'); */
 }
@@ -128,11 +129,13 @@ b {
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 20px;
-    font-family: MyHelvetica;
+    /* font-family: MyHelvetica; */
+    font-family: Microsoft JhengHei;
 }
 
 .button3 {
-    font-family: MyHelvetica;
+    /* font-family: MyHelvetica; */
+    font-family: Microsoft JhengHei;
     margin-left: 16dp;
     margin-right: 16dp;
     font-weight: 600;

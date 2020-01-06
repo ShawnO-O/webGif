@@ -14,9 +14,6 @@
     <script src="session.js"></script>
     <!-- <script src="Bolb.js"></script> -->
     <div id="main_layout">
-        <span>
-            <input style="font-size: 30px;font-family: MyHelvetica;width: 500px;" id="test_anger" />
-        </span>
         <div>
             <canvas class='cvs' id='test2'></canvas>
         </div>
@@ -26,7 +23,7 @@
             <b>
                 請輸入名稱
                 <br>
-                <span> <input style="font-size: 30px;font-family: MyHelvetica;" id='name' value="不問歲月任風歌" maxlength="7"
+                <span> <input style="font-size: 30px;font-family: Microsoft JhengHei;" id='name' value="" maxlength="7"
                         placeholder="車行名稱(最多七字)" /></span>
             </b>
 
@@ -63,9 +60,11 @@
     <div id="loadingGif" style="padding-top: 20px;padding-bottom: 20px;" hidden="true">
         <img src="images/ZZ5H.gif" style="width: 100;height: 100;"> 圖片產生中...請稍後
     </div>
-
+    <div>
+        <button hidden="true" id='btn_go_back' class="button4" type="button">回上一頁</button>
+    </div>
     <div id="iosSaver" hidden="true">
-        <b>請使用長按儲存賀圖</b></br>
+        <b>請使用檢視/長按儲存賀圖</b></br>
         <img id="imgSucessPhoto">
     </div>
     <!-- <div> -->
@@ -98,22 +97,7 @@
     var seMode5 = document.getElementById('seMode5');
     var seMode6 = document.getElementById('seMode6');
     var main_layout = document.getElementById('main_layout');
-    var test_anger = document.getElementById('test_anger');
-    console.log("test_anger:" + test_anger)
-    console.log(navigator.appCodeName)
-    console.log(navigator.appName)
-    console.log(navigator.appVersion)
-    console.log(navigator.javaEnabled())
-    console.log(navigator.mimeTypes)
-    console.log(navigator.platform)
-    console.log(navigator.plugins)
-    console.log(navigator.userAgent)
-    // (navigator.userAgent.match("Safari")
-    if (navigator.userAgent.match("iPhone")) {
-        test_anger.value = "yes"
-    } else {
-        test_anger.value = "no"
-    }
+    var btn_go_back = document.getElementById('btn_go_back');
 
     var modeCheck1 = false;
     var modeCheck2 = false;
@@ -182,7 +166,7 @@
         selectColorCode = Session.get("colorCode");
 
     colorCheck()
-    // img_red.src = "images/red_checked.png"
+        // img_red.src = "images/red_checked.png"
     colorType(selectColor)
     console.log("selectColorCode:" + selectColorCode)
     var loadingGif = document.getElementById('loadingGif');
@@ -248,7 +232,7 @@
                 ctx.drawImage(img2, 262 + 60 + 100, background_point_small_y)
 
                 //字型大小
-                ctx.font = "bold " + 30 + "px MyHelvetica";
+                ctx.font = "bold " + 30 + "px Microsoft JhengHei";
                 ctx.fillText("敬", 262 + 80 + 85, background_point_small_y + 35)
                 ctx.fillText("賀", 262 + 115 + 85, background_point_small_y + 35)
                 break;
@@ -259,7 +243,7 @@
                 ctx.drawImage(img2, 300 + 60 + 100, background_point_small_y)
 
                 //字型大小
-                ctx.font = "bold " + 30 + "px MyHelvetica";
+                ctx.font = "bold " + 30 + "px Microsoft JhengHei";
                 ctx.fillText("敬", 300 + 80 + 85, background_point_small_y + 35)
                 ctx.fillText("賀", 300 + 115 + 85, background_point_small_y + 35)
                 break;
@@ -271,7 +255,7 @@
                 ctx.drawImage(img2, 335 + 60 + 100, background_point_small_y)
 
                 //字型大小
-                ctx.font = "bold " + 30 + "px MyHelvetica";
+                ctx.font = "bold " + 30 + "px Microsoft JhengHei";
                 ctx.fillText("敬", 335 + 80 + 85, background_point_small_y + 35)
                 ctx.fillText("賀", 335 + 115 + 85, background_point_small_y + 35)
                 break;
@@ -284,7 +268,7 @@
                 ctx.drawImage(img2, 366 + 60 + 100, background_point_small_y)
 
                 //字型大小
-                ctx.font = "bold " + 30 + "px MyHelvetica";
+                ctx.font = "bold " + 30 + "px Microsoft JhengHei";
                 ctx.fillText("敬", 366 + 80 + 85, background_point_small_y + 35)
                 ctx.fillText("賀", 366 + 115 + 85, background_point_small_y + 35)
                 break;
@@ -298,7 +282,7 @@
                 ctx.drawImage(img2, 390 + 50 + 100, background_point_small_y)
 
                 //字型大小
-                ctx.font = "bold " + 30 + "px MyHelvetica";
+                ctx.font = "bold " + 30 + "px Microsoft JhengHei";
                 ctx.fillText("敬", 390 + 70 + 85, background_point_small_y + 35)
                 ctx.fillText("賀", 390 + 100 + 85, background_point_small_y + 35)
                 break;
@@ -313,7 +297,7 @@
                 ctx.drawImage(img2, 412 + 50 + 100, background_point_small_y)
 
                 //字型大小
-                ctx.font = "bold " + 30 + "px MyHelvetica";
+                ctx.font = "bold " + 30 + "px Microsoft JhengHei";
                 ctx.fillText("敬", 412 + 70 + 85, background_point_small_y + 35)
                 ctx.fillText("賀", 412 + 100 + 85, background_point_small_y + 35)
                 break;
@@ -329,7 +313,7 @@
                 ctx.drawImage(img2, 430 + 50 + 100, background_point_small_y)
 
                 //字型大小
-                ctx.font = "bold " + 30 + "px MyHelvetica";
+                ctx.font = "bold " + 30 + "px Microsoft JhengHei";
                 ctx.fillText("敬", 430 + 70 + 85, background_point_small_y + 35)
                 ctx.fillText("賀", 430 + 100 + 85, background_point_small_y + 35)
                 break;
@@ -348,7 +332,7 @@
 
 
         //字型大小
-        ctx.font = "bold " + intFontSize + "px MyHelvetica";
+        ctx.font = "bold " + intFontSize + "px Microsoft JhengHei";
 
 
         var ss = input.value.split('');
@@ -367,7 +351,7 @@
                     FontX = widthBase + (widthBase * 2 / ss.length * pos) - 40 + (pos * 4);
                 } else if (ss.length > 4) {
                     widthBase = widthBase - 10
-                    // console.log(widthBase + "+" + widthBase + "*2/" + ss.length + "*" + pos);
+                        // console.log(widthBase + "+" + widthBase + "*2/" + ss.length + "*" + pos);
                     FontX = widthBase + (widthBase * 2 / ss.length * pos) - 20 + (pos * 7);
                 } else {
                     FontX = widthBase + (widthBase * 2 / ss.length * pos) - 15
@@ -537,9 +521,8 @@
             console.log(array.length)
             var i = 0;
             console.log("count:" + gif.length)
-            gif.on('finished', function (blob) {
+            gif.on('finished', function(blob) {
                 loadingGif.hidden = true;
-                main_layout.hidden = false;
                 // 这里的blob就是gif图片blod格式信息
                 mBlob = blob;
                 // openURL();
@@ -547,11 +530,13 @@
                 // test.value = navigator.userAgent
                 console.log("Agent:" + navigator.userAgent)
                 console.log("Agent:" + navigator.userAgent.indexOf("Safari"))
-                if (navigator.userAgent.match("Safari")) {
+                if (navigator.userAgent.match("iPhone")) {
                     forIosSafari()
                 } else {
+
+                    main_layout.hidden = false;
                     saveAs(blob, "hotcard.gif");
-                    window.location.reload();
+                    // window.location.reload();
                 }
             });
             gif.render();
@@ -562,8 +547,8 @@
 
     function forIosSafari() {
         iosSaver.hidden = false
-        // var file = new File([mBlob], "name.gif");
-        // 
+            // var file = new File([mBlob], "name.gif");
+            // 
         imgSucessPhoto.src = URL.createObjectURL(mBlob);
         // var reader = new FileReader();
         // reader.readAsDataURL(mBlob);
@@ -685,7 +670,7 @@
     }
 
     var horseColor = ['red', 'orange', 'yellow', 'green', 'blue', '#4b0080', 'purple']
-    //人生跑馬燈
+        //人生跑馬燈
     function HorseRunning(ctx, pos, count) {
         ctx.fillStyle = horseColor[Math.abs((count % fontArraySize) - pos)];
     }
@@ -695,47 +680,47 @@
 
     img_black.onclick = () => {
         colorCheck()
-        // img_black.src = "images/black_checked.png"
+            // img_black.src = "images/black_checked.png"
         colorType("black")
-        // window.location.reload();
+            // window.location.reload();
 
     }
 
     img_red.onclick = () => {
         colorCheck()
-        // img_red.src = "images/red_checked.png"
+            // img_red.src = "images/red_checked.png"
         colorType("red")
-        // window.location.reload();
+            // window.location.reload();
     }
 
     img_green.onclick = () => {
         colorCheck()
-        // img_green.src = "images/green_light_checked.png"
+            // img_green.src = "images/green_light_checked.png"
         colorType("green")
-        // window.location.reload();
+            // window.location.reload();
     }
 
     img_blue.onclick = () => {
         colorCheck()
-        // img_blue.src = "images/blue_light_checked.png"
+            // img_blue.src = "images/blue_light_checked.png"
 
         colorType("blue")
-        // window.location.reload();
+            // window.location.reload();
     }
 
     img_yellow.onclick = () => {
         colorCheck()
-        // img_yellow.src = "images/yellow_checked.png"
+            // img_yellow.src = "images/yellow_checked.png"
         colorType("yellow")
-        // window.location.reload();
+            // window.location.reload();
 
     }
 
     img_pink.onclick = () => {
         colorCheck()
-        // img_pink.src = "images/pink_checked.png"
+            // img_pink.src = "images/pink_checked.png"
         colorType("pink")
-        // window.location.reload();
+            // window.location.reload();
 
     }
 
@@ -846,9 +831,9 @@
             Session.set("s4", "" + "1")
         }
         console.log("點我4")
-        // window.location.reload();
-        // modeCheck4 = !modeCheck4
-        // Session.set("s4", "" + modeCheck4)
+            // window.location.reload();
+            // modeCheck4 = !modeCheck4
+            // Session.set("s4", "" + modeCheck4)
         CheckSpicalStyle(4)
     }
     s5.onclick = () => {
@@ -860,10 +845,17 @@
             Session.set("s5", "1")
         }
         console.log("點我5")
-        // window.location.reload();
-        // modeCheck5 = !modeCheck5
-        // Session.set("s5", "" + modeCheck5)
+            // window.location.reload();
+            // modeCheck5 = !modeCheck5
+            // Session.set("s5", "" + modeCheck5)
         CheckSpicalStyle(5)
+    }
+    btn_go_back.onclick = () => {
+        console.log("btn_go_back")
+        window.location.reload();
+        // iosSaver.hidden = true;
+        // btn_go_back.hidden = true;
+        // main_layout.hidden = false;
     }
 
     function CheckSpicalStyleAll() {
@@ -935,9 +927,6 @@
                 break;
         }
     }
-
-
-
 </script>
 
 </html>
